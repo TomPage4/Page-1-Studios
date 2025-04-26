@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Hortus Cauldron",
+        "description": "Sustainable. Vegan. Locally Crafted.",
+        "image": "/static/images/hortus-cauldron.jpeg",
+        "link": "#"
+    },
+    {
+        "title": "Tara's yoga",
+        "description": "Stay tuned",
+        "image": "/static/images/coming-soon.png",
+        "link": "#"
+    }
+]

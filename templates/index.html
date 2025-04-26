@@ -43,7 +43,20 @@
                     <p id="intro-line-2"></p>
                 </div>
             </div>
+            <div class="intro-social">
+                <a href="https://www.linkedin.com/in/tom-page-/" target="_blank">
+                    <img src="/static/images/linkedin.svg" alt="LinkedIn" class="intro-social-icon">
+                </a>
+                <a href="#" target="_blank">
+                    <img src="/static/images/instagram.svg" alt="Instagram" class="intro-social-icon">
+                </a>
+                <a href="https://github.com/TomPage4" target="_blank">
+                    <img src="/static/images/github.svg" alt="GitHub" class="intro-social-icon">
+                </a>
+            </div>
         </section>
+
+        <hr class="section-divider">
 
         <section class="about" id="about">
             <div class="about-container">
@@ -57,29 +70,82 @@
                     </div>
                 </div>
                 <div class="about-content">
-                    <h2 class="about-header">About</h2>
+                    <h2 class="animated-header" id="about-header">About</h2>
                     <p class="about-text" id="about-text-1">Hi, I'm Tom Page — a software engineering student based in Cardiff, Wales, and the founder of Page 1 Studios.
                         I started this web design business with one goal in mind: to help individuals and businesses make a strong first impression online.
                         Whether you're launching your first site or looking to refresh an existing one, I bring a mix of creativity, technical know-how, and a personal touch to every project.
                     </p>
-                    <p class="about-text">
+                    <p class="about-text" id="about-text-2">
                         Let’s build something great — starting from page 1.
                     </p>
                 </div>
             </div>
         </section>
         
-        <section class="work">
+        <hr class="section-divider">
 
+        <section class="work" id="work">
+            <div class="work-header-container">
+                <h2 class="animated-header" id="work-header">Work</h2>
+                <p class="work-header-text">Plenty late nights and a lot of passion.
+                    Here’s where creativity meets code.
+                </p>
+            </div>
+            <div class="work-card-container">
+                {% for job in jobs %}
+                <a href="{{ job.link }}" target="_blank">
+                    <div class="work-card" style="background-image: url('{{ job.image }}');">
+                        <div class="work-content">
+                            <h2>{{ job.title }}</h2>
+                            <span>{{ job.description }}</span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
         </section>
 
-        <section class="contact">
+        <hr class="section-divider">
+          
+        <section class="contact" id="contact">
+            <div class="contact-header-container">
+                <h2 class="animated-header" id="contact-header">Contact</h2>
+                <p class="contact-text">Ready to start something new? Get in touch!</p>
+            </div>
+            <form id="contact-form">
+                <label for="name">Name</label>
+                <input name="name" class="contact-input" id="name">
+                <p class="error-message" id="name-error"></p>
 
+                <label for="email">Email</label>
+                <input name="email" class="contact-input" id="email">
+                <p class="error-message" id="email-error"></p>
+
+                <label for="message">Message</label>
+                <textarea name="message" class="contact-input" id="message"></textarea>
+                <p class="error-message" id="message-error"></p>
+
+                <button type="submit" class="animated-button" id="contact-submit-button">Reach out</button>
+            </form>
         </section>
+
+        <hr class="section-divider">
 
         <section class="source-code">
-
+            <canvas id="falling-code"></canvas>
+            <div class="source-code-content">
+                <h2 class="animated-header" id="source-code-header">Source code</h2>
+                <p class="source-code-text">The Code Behind the Curtain</p>
+                <p class="source-code-text">Curious minds are welcome. Your journey through the code begins here.</p>
+            </div>
+            <div class="enter-repository-container">
+                <a href="https://github.com/TomPage4/website-portfolio/tree/main" target="_blank">
+                    <button class="animated-button" id="enter-repository-button">ENTER</button>
+                </a>
+            </div>
         </section>
+
+        <hr class="section-divider">
     </main>
 
     <footer>

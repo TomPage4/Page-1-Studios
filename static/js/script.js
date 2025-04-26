@@ -15,7 +15,7 @@ const line1Text = "Hello, my name is ";
 const nameText = "Tom Page";
 const secondLinePhrases = [
     "I am a full stack web developer",
-    "I turn ideas into code",
+    "I turn your ideas into code",
     "I care about performance and design"
 ];
 
@@ -140,4 +140,158 @@ document.querySelector('.intro').addEventListener('mousemove', (e) => {
 
     svg1.style.transform = `translate(${(mouseX - window.innerWidth / 2) * 0.05}px, ${(mouseY - window.innerHeight / 2) * 0.05}px)`;
     svg2.style.transform = `translate(${(window.innerWidth / 2 - mouseX) * 0.05}px, ${(window.innerHeight / 2 - mouseY) * 0.05}px)`;
+});
+
+
+
+
+
+
+// CONTACT FORM REQUIRED FIELDS AND SUBMISSION
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const fields = ['name', 'email', 'message'];
+        let isValid = true;
+
+        fields.forEach(field => {
+            const input = document.getElementById(field);
+            const error = document.getElementById(`${field}-error`);
+            input.classList.remove('error');
+            error.textContent = '';
+        });
+
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+
+        if (name.value.trim() === '') {
+            showError(name, 'Name is required');
+            isValid = false;
+        } else if (!/^[a-zA-Z\s'-]+$/.test(name.value)) {
+            showError(name, 'Name must only contain letters and spaces');
+            isValid = false;
+        } else {
+            name.classList.remove('invalid');
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email.value.trim() === '') {
+            showError(email, 'Email is required');
+            isValid = false;
+        } else if (!emailPattern.test(email.value)) {
+            showError(email, 'Please enter a valid email address');
+            isValid = false;
+        } else {
+            email.classList.remove('invalid');
+        }
+
+        if (message.value.trim() === '') {
+            showError(message, 'Message cannot be empty');
+            isValid = false;
+        } else if (message.value.length > 999) {
+            showError(message, 'Message is to long')
+            isValid = false;
+        } else {
+            message.classList.remove('invalid');
+        }
+
+        if (isValid) {
+            try {
+                const formData = new FormData(form);
+                const response = await fetch("/contact", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (response.status === 429) {
+                    alert("Too many submissions. Please try again later.");
+                    return;
+                }
+
+                const result = await response.json();
+
+                if (result.success) {
+                    form.reset();
+                    alert("Thanks for reaching out!");
+                } else {
+                    alert("Something went wrong. Please try again later.");
+                }
+            } catch (error) {
+                console.error("Form submission error:", error);
+                alert("Failed to submit form.");
+            }
+        }
+
+        function showError(input, message) {
+            input.classList.add('error', 'invalid');
+            const error = document.getElementById(`${input.id}-error`);
+            error.textContent = message;
+        }
+    });
+});
+
+
+
+
+
+
+// FALLING CODE
+const canvas = document.getElementById('falling-code');
+const ctx = canvas.getContext('2d');
+
+// Read font size and family from CSS
+const section = document.querySelector('.source-code');
+const computedStyles = window.getComputedStyle(section);
+const fontSizePx = computedStyles.fontSize;
+const fontFamily = computedStyles.fontFamily;
+
+// Convert font size to number
+const fontSize = parseFloat(fontSizePx);
+
+// Resize canvas to match screen
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+
+const letters = 'アァイィウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
+
+let frame = 0;
+const frameDelay = 2; // Slows down animation
+
+function drawMatrix() {
+  if (frame % frameDelay === 0) {
+    ctx.fillStyle = 'rgba(4, 20, 22, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#FF2692';
+    ctx.font = `${fontSize}px ${fontFamily}`;
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  frame++;
+  requestAnimationFrame(drawMatrix);
+}
+
+drawMatrix();
+window.addEventListener('resize', () => {
+  resizeCanvas();
 });

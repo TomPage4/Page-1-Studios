@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: page1-contact-form
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app  # Change if your file isn't named app.py
+    envVars:
+      - key: MAIL_USERNAME
+        value: contact.page1studios@gmail.com
+      - key: MAIL_PASSWORD
+        value: varm vgle suxj yfou
+      - key: SECRET_KEY
+        generateValue: true
