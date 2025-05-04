@@ -295,3 +295,99 @@ drawMatrix();
 window.addEventListener('resize', () => {
   resizeCanvas();
 });
+
+
+// PRE LOADER PAGE ANIMATION
+window.addEventListener('load', () => {
+    const NUM_BLOCKS = 6; // 👈 Change this number to control how many bars appear
+  
+    const blocksContainer = document.getElementById('blocks-container');
+    const logo = document.getElementById('logo-container');
+    const content = document.getElementById('content');
+  
+    // Dynamically create blocks
+    for (let i = 0; i < NUM_BLOCKS; i++) {
+      const block = document.createElement('div');
+      block.classList.add('block');
+      block.style.width = `${100 / NUM_BLOCKS}%`;
+      block.style.left = `${(100 / NUM_BLOCKS) * i}%`;
+      blocksContainer.appendChild(block);
+    }
+  
+    const blocks = document.querySelectorAll('.block');
+  
+    // Step 1: Show logo for 2 seconds
+    setTimeout(() => {
+      logo.style.opacity = 0;
+  
+      // Step 2: Animate each block up in sequence
+      blocks.forEach((block, index) => {
+        setTimeout(() => {
+          block.classList.add('slide-up');
+        }, index * 150); // 👈 Change this number to change speed of bar animation
+      });
+  
+      // Step 3: Reveal content
+      const totalAnimationTime = NUM_BLOCKS * 200 + 800;
+      setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+        content.style.display = 'block';
+        document.body.style.overflow = 'auto';
+      }, totalAnimationTime);
+  
+    }, 2000);
+  });
+
+
+
+// SOLUTIONS CARD CURSOR GLOW
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.solution-card').forEach(card => {
+        const glow = card.querySelector('.glow');
+  
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            glow.style.left = `${x}px`;
+            glow.style.top = `${y}px`;
+        });
+  
+        card.addEventListener('mouseenter', () => {
+            glow.style.opacity = '1';
+        });
+  
+        card.addEventListener('mouseleave', () => {
+            glow.style.opacity = '0';
+        });
+    });
+});
+
+
+// HEADER BURGER MENU
+document.addEventListener("DOMContentLoaded", () => {
+    const headerBurger = document.getElementById('header-burger');
+    const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links a');
+    const overlay = document.getElementById('overlay');
+
+    headerBurger.addEventListener('click', () => {
+        headerBurger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
+    });
+
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            headerBurger.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    });
+
+    overlay.addEventListener("click", () => {
+        headerBurger.classList.remove("active");
+        navLinks.classList.remove("active");
+        overlay.classList.remove("active");
+    });
+});

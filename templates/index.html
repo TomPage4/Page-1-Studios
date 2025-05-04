@@ -14,6 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div id="preloader">
+        <div id="logo-container">
+          <img src="/static/images/logo.svg" alt="Logo" id="logo" />
+        </div>
+        <div id="blocks-container"></div>
+    </div>
+
     <header class="site-header">
         <div class="header-container">
             <div class="logo">
@@ -21,21 +29,33 @@
                     <img src="/static/images/logo.svg" alt="Logo" />
                 </a>
             </div>
+            <div class="header-burger" id="header-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#intro">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#work">Work</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <div class="overlay" id="overlay"></div>
+
     <main>
         <section class="intro" id="intro">
-            <img src="/static/images/duck-web.svg" alt="Duck Web overlay" class="svg-background" id="duck-web">
-            <img src="/static/images/html-cmd.svg" alt="html cmd overlay" class="svg-background" id="html-cmd">
+            <div class="video-background">
+                <video autoplay muted loop class="background-video">
+                    <source src="/static/images/intro-wallpaper.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="background-overlay"></div>
             <div class="intro-container">
                 <div class="intro-text">
                     <p id="intro-line-1"></p>
@@ -102,6 +122,59 @@
                     </div>
                 </a>
                 {% endfor %}
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section class="solutions" id="solutions">
+            <div class="solutions-header-container">
+                <h2 class="animated-header" id="solutions-header">Solutions</h2>
+            </div>
+            <div class="solutions-card-container">
+                <div class="solutions-grid">
+                    <a href="#contact" class="solution-card card-1">
+                        <div class="glow"></div>
+                        <h3>Digital Marketplace (Snipcart)</h3>
+                        <h4>£600</h4>
+                        <p>A clean, fully custom-designed website tailored to your brand — equipped with secure e-commerce functionality using Snipcart.</p>
+                        <p>What's included:</p>
+                        <ul>
+                            <li>Responsive, mobile-friendly design</li>
+                            <li>Contact form integration</li>
+                            <li>Basic SEO setup</li>
+                            <li>Snipcart integration for secure shoppping</li>
+                            <li>Order and inventory management via Snipcart dashboard</li>
+                        </ul>
+                    </a>
+                    <a href="#contact" class="solution-card card-2">
+                        <div class="glow"></div>
+                        <h3>Website Essentials</h3>
+                        <h4>£450</h4>
+                        <p>A polished, purpose-built website designed to elevate your business and give your audience the experience they expect from a modern brand.</p>
+                        <p>What's included:</p>
+                        <ul>
+                            <li>Responsive, mobile-friendly design</li>
+                            <li>Contact form integration</li>
+                            <li>Basic SEO setup</li>
+                            <li>Intergration of social media links</li>
+                        </ul>
+                    </a>
+                    <a href="#contact" class="solution-card card-3">
+                        <div class="glow"></div>
+                        <h3>Complete Branding Package</h3>
+                        <h4>£1050</h4>
+                        <p>A complete visual identity solution — combining a bespoke website with professionally designed branding, logo, and graphics delivered in collaboration with my trusted design partner at <strong>Minusu</strong>.</p>
+                        <p>What's included:</p>
+                        <ul>
+                            <li>Everything in <strong>Digital Marketplace</strong>, plus...</li>
+                            <li>Logo & brand identity</li>
+                            <li>Brand colour pallete & typography guide</li>
+                            <li>Social media & marketing graphics</li>
+                            <li>Coordinated style across site & assets</li>
+                        </ul>
+                    </a>
+                </div>
             </div>
         </section>
 

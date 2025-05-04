@@ -29,6 +29,8 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_SENDER'] = os.environ.get('MAIL_SENDER')
+app.config['MAIL_RECEIVER'] = os.environ.get('MAIL_RECEIVER')
 
 mail = Mail(app)
 
@@ -45,10 +47,10 @@ def contact():
 
     msg = Message(
         subject=f"Website contact form submission from {name}",
-        sender=app.config['MAIL_USERNAME'],
-        recipients=[app.config['MAIL_USERNAME']],  # Send to yourself
-        reply_to=email,
-        body=f"From: {name} <{email}>\n\n{message}"
+        sender = ("Page 1 Studios Notifications", app.config['MAIL_SENDER']),
+        recipients = [app.config['MAIL_RECEIVER']],
+        reply_to = email,
+        body = f"From: {name} <{email}>\n\n{message}"
     )
     try:
         mail.send(msg)
