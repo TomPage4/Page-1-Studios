@@ -6,10 +6,7 @@ services:
     startCommand: gunicorn app:app
     envVars:
       - key: MAIL_SENDER
-        value: noreply.page1studios@gmail.com
       - key: MAIL_PASSWORD
-        value: varm vgle suxj yfou
       - key: MAIL_RECEIVER
-        value: contact.page1studios@gmail.com
       - key: SECRET_KEY
         generateValue: true

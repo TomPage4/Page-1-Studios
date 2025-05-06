@@ -1,4 +1,6 @@
-// Detects when user scrolls to make header appear
+/*----------------------------------------------
+  HEADER APPEARS ON SCROLL
+----------------------------------------------*/
 document.addEventListener('scroll', () => {
     const header = document.querySelector('.site-header');
     if (window.scrollY > 0) {
@@ -10,13 +12,19 @@ document.addEventListener('scroll', () => {
 
 
 
-// Typewriter effect on intro text
+
+
+/*----------------------------------------------
+  TYPEWRITER EFFECT ON INTRO
+----------------------------------------------*/
 const line1Text = "Hello, my name is ";
 const nameText = "Tom Page";
 const secondLinePhrases = [
-    "I am a full stack web developer",
-    "I turn your ideas into code",
-    "I care about performance and design"
+    "I am a full stack web developer.",
+    "I turn your ideas into code.",
+    "I care about performance and design.",
+    "I help you launch with confidence.",
+    "I build websites that are fast, secure, and user-friendly."
 ];
 
 const line1El = document.getElementById("intro-line-1");
@@ -30,8 +38,8 @@ let charIndex = 0;
 let isDeleting = false;
 
 document.addEventListener("DOMContentLoaded", () => {
-    line1El.classList.add("typewriter-cursor"); // Show cursor on line 1
-    typeLine1();
+    line1El.classList.add("typewriter-cursor");
+    setTimeout(typeLine1, 3000)
 });
 
 function typeLine1() {
@@ -42,7 +50,6 @@ function typeLine1() {
             setTimeout(typeLine1, 70);
         } else {
             typingName = true;
-            // Create the <a> tag so we can type inside it
             const a = document.createElement("a");
             a.href = "#about";
             a.id = "name-link";
@@ -56,10 +63,8 @@ function typeLine1() {
             nameIndex++;
             setTimeout(typeLine1, 70);
         } else {
-            // Remove cursor from line 1, show it on line 2
             line1El.classList.remove("typewriter-cursor");
             line2El.classList.add("typewriter-cursor");
-
             setTimeout(typeSecondLine, 800);
         }
     }
@@ -67,22 +72,18 @@ function typeLine1() {
 
 function typeSecondLine() {
     const currentPhrase = secondLinePhrases[phraseIndex];
-
     if (isDeleting) {
         charIndex--;
     } else {
         charIndex++;
     }
-
     line2El.textContent = currentPhrase.substring(0, charIndex);
-
     if (!isDeleting && charIndex === currentPhrase.length) {
         setTimeout(() => isDeleting = true, 800);
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % secondLinePhrases.length;
     }
-
     const speed = isDeleting ? 40 : 80;
     setTimeout(typeSecondLine, speed);
 }
@@ -90,66 +91,100 @@ function typeSecondLine() {
 
 
 
-// IMAGE SCROLL ON ABOUT
+/*----------------------------------------------
+  IMAGE SCROLL ON ABOUT
+----------------------------------------------*/
 const slideshowTrack = document.querySelector('.slideshow-track');
-const images = slideshowTrack.querySelectorAll('img');
+let images = slideshowTrack.querySelectorAll('img');
 const slideCount = images.length;
-const slideWidth = window.innerWidth / 2; // 50vw
-let currentIndex = 0;
-
-// Clone the first image and append it
 const firstClone = images[0].cloneNode(true);
 slideshowTrack.appendChild(firstClone);
 
+let currentIndex = 0;
+let slideWidth = 0;
+let autoSlideInterval;
+let isHovered = false;
+
+function getSlideWidth() {
+    return slideshowTrack.querySelector('img').getBoundingClientRect().width;
+}
+
+function updateSlideWidthAndPosition() {
+    slideWidth = getSlideWidth();
+    slideshowTrack.style.transition = 'none';
+    slideshowTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+}
+
 function moveSlide() {
+    if (isHovered) return;
+
     currentIndex++;
+    slideWidth = getSlideWidth();
     slideshowTrack.style.transition = 'transform 1s ease-in-out';
     slideshowTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
 
-    // When hitting the clone (end), reset without animation
     if (currentIndex === slideCount) {
         setTimeout(() => {
-        slideshowTrack.style.transition = 'none';
-        slideshowTrack.style.transform = `translateX(0px)`;
-        currentIndex = 0;
-        }, 1000); // Match this to your transition duration (1s)
+            slideshowTrack.style.transition = 'none';
+            slideshowTrack.style.transform = `translateX(0px)`;
+            currentIndex = 0;
+        }, 1000);
     }
 }
 
-setInterval(moveSlide, 4000);
+function startAutoSlide() {
+    autoSlideInterval = setInterval(moveSlide, 4000);
+}
+
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+slideshowTrack.addEventListener('mouseenter', () => {
+    isHovered = true;
+    stopAutoSlide();
+});
+
+slideshowTrack.addEventListener('mouseleave', () => {
+    isHovered = false;
+    startAutoSlide();
+});
+
+window.addEventListener('resize', updateSlideWidthAndPosition);
+updateSlideWidthAndPosition();
+setTimeout(() => {
+    startAutoSlide();
+}, 3000);
 
 
 
 
-// SEND USER TO THE TOP OF THE PAGE ON PAGE REFRESH
+
+
+
+
+/*----------------------------------------------
+  SEND USER TO TOP OF PAGE ON REFRESH
+----------------------------------------------*/
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
-    window.history.scrollRestoration = "manual"; // prevent auto-scroll
+    window.history.scrollRestoration = "manual";
 };
 
 
 
 
-// MOUSE MOVEMENT MOVES INTRO OVERLAY
-document.querySelector('.intro').addEventListener('mousemove', (e) => {
-    const svg1 = document.querySelector('#duck-web'); // First SVG with ID svg1
-    const svg2 = document.querySelector('#html-cmd'); // Second SVG with ID svg2
-
-    const mouseX = e.pageX;
-    const mouseY = e.pageY;
-
-    svg1.style.transform = `translate(${(mouseX - window.innerWidth / 2) * 0.05}px, ${(mouseY - window.innerHeight / 2) * 0.05}px)`;
-    svg2.style.transform = `translate(${(window.innerWidth / 2 - mouseX) * 0.05}px, ${(window.innerHeight / 2 - mouseY) * 0.05}px)`;
-});
 
 
 
 
-
-
-// CONTACT FORM REQUIRED FIELDS AND SUBMISSION
+/*----------------------------------------------
+  CONTACT FORM VALIDATION AND SUBMISSION
+----------------------------------------------*/
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById('contact-form');
+    const submitButton = document.getElementById('contact-submit-button');
+    const defaultButtonText = submitButton.textContent;
 
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -157,16 +192,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const fields = ['name', 'email', 'message'];
         let isValid = true;
 
+        // Clear previous errors
         fields.forEach(field => {
             const input = document.getElementById(field);
             const error = document.getElementById(`${field}-error`);
-            input.classList.remove('error');
+            input.classList.remove('error', 'invalid');
             error.textContent = '';
         });
 
         const name = document.getElementById('name');
         const email = document.getElementById('email');
         const message = document.getElementById('message');
+        const honeypot = document.getElementById('phone'); // Hidden bot trap
+
+        if (honeypot.value.trim() !== "") {
+            return; // Bot detected, silently block
+        }
 
         if (name.value.trim() === '') {
             showError(name, 'Name is required');
@@ -174,8 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (!/^[a-zA-Z\s'-]+$/.test(name.value)) {
             showError(name, 'Name must only contain letters and spaces');
             isValid = false;
-        } else {
-            name.classList.remove('invalid');
         }
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -185,21 +224,23 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (!emailPattern.test(email.value)) {
             showError(email, 'Please enter a valid email address');
             isValid = false;
-        } else {
-            email.classList.remove('invalid');
         }
 
         if (message.value.trim() === '') {
             showError(message, 'Message cannot be empty');
             isValid = false;
         } else if (message.value.length > 999) {
-            showError(message, 'Message is to long')
+            showError(message, 'Message is too long');
             isValid = false;
-        } else {
-            message.classList.remove('invalid');
         }
 
         if (isValid) {
+            // Disable button and show sending text
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+            submitButton.classList.add("submitting");
+
+
             try {
                 const formData = new FormData(form);
                 const response = await fetch("/contact", {
@@ -223,6 +264,12 @@ document.addEventListener("DOMContentLoaded", function () {
             } catch (error) {
                 console.error("Form submission error:", error);
                 alert("Failed to submit form.");
+            } finally {
+                // Re-enable button and restore text
+                submitButton.disabled = false;
+                submitButton.textContent = defaultButtonText;
+                submitButton.classList.remove("submitting");
+
             }
         }
 
@@ -239,108 +286,116 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// FALLING CODE
+
+
+
+/*----------------------------------------------
+  FALLING CODE ON SOURCE CODE
+----------------------------------------------*/
 const canvas = document.getElementById('falling-code');
 const ctx = canvas.getContext('2d');
-
-// Read font size and family from CSS
 const section = document.querySelector('.source-code');
 const computedStyles = window.getComputedStyle(section);
 const fontSizePx = computedStyles.fontSize;
 const fontFamily = computedStyles.fontFamily;
-
-// Convert font size to number
 const fontSize = parseFloat(fontSizePx);
 
-// Resize canvas to match screen
+let columns;
+let drops = [];
+
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    columns = Math.floor(canvas.width / fontSize);
+    drops = Array(columns).fill(1); // Reset drops with new width
 }
 
 resizeCanvas();
 
 const letters = 'アァイィウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
-const columns = Math.floor(canvas.width / fontSize);
-const drops = Array(columns).fill(1);
-
 let frame = 0;
 const frameDelay = 2; // Slows down animation
 
 function drawMatrix() {
-  if (frame % frameDelay === 0) {
-    ctx.fillStyle = 'rgba(4, 20, 22, 0.1)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (frame % frameDelay === 0) {
+        ctx.fillStyle = 'rgba(4, 20, 22, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#FF2692';
+        ctx.font = `${fontSize}px ${fontFamily}`;
 
-    ctx.fillStyle = '#FF2692';
-    ctx.font = `${fontSize}px ${fontFamily}`;
+        for (let i = 0; i < drops.length; i++) {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters[Math.floor(Math.random() * letters.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
 
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-
-      drops[i]++;
+            drops[i]++;
+        }
     }
-  }
 
-  frame++;
-  requestAnimationFrame(drawMatrix);
+    frame++;
+    requestAnimationFrame(drawMatrix);
 }
 
 drawMatrix();
-window.addEventListener('resize', () => {
-  resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+
+
+
+
+
+
+/*----------------------------------------------
+  PRELOADER PAGE ANIMATION
+----------------------------------------------*/
+window.addEventListener('load', () => {
+    const NUM_BLOCKS = 6;
+
+    const preloaderContainer = document.getElementById('preloader-blocks-container');
+    const preloaderLogo = document.getElementById('preloader-logo-container');
+    const mainContent = document.getElementById('preloader-main-content');
+
+    for (let i = 0; i < NUM_BLOCKS; i++) {
+        const block = document.createElement('div');
+        block.classList.add('preloader-block-bar');
+        block.style.width = `${100 / NUM_BLOCKS}%`;
+        block.style.left = `${(100 / NUM_BLOCKS) * i}%`;
+        preloaderContainer.appendChild(block);
+    }
+
+    const preloaderBlocks = document.querySelectorAll('.preloader-block-bar');
+
+    setTimeout(() => {
+        preloaderLogo.style.opacity = 0;
+
+        preloaderBlocks.forEach((block, index) => {
+            setTimeout(() => {
+                block.classList.add('preloader-block-slide-up');
+            }, index * 150);
+        });
+
+        const totalAnimationTime = NUM_BLOCKS * 150 + 800;
+        setTimeout(() => {
+            document.getElementById('preloader').style.display = 'none';
+            document.documentElement.classList.remove('preload-active');
+            document.body.classList.remove('preload-active');
+        }, totalAnimationTime - 800);
+    }, 2000);
 });
 
 
-// PRE LOADER PAGE ANIMATION
-window.addEventListener('load', () => {
-    const NUM_BLOCKS = 6; // 👈 Change this number to control how many bars appear
-  
-    const blocksContainer = document.getElementById('blocks-container');
-    const logo = document.getElementById('logo-container');
-    const content = document.getElementById('content');
-  
-    // Dynamically create blocks
-    for (let i = 0; i < NUM_BLOCKS; i++) {
-      const block = document.createElement('div');
-      block.classList.add('block');
-      block.style.width = `${100 / NUM_BLOCKS}%`;
-      block.style.left = `${(100 / NUM_BLOCKS) * i}%`;
-      blocksContainer.appendChild(block);
-    }
-  
-    const blocks = document.querySelectorAll('.block');
-  
-    // Step 1: Show logo for 2 seconds
-    setTimeout(() => {
-      logo.style.opacity = 0;
-  
-      // Step 2: Animate each block up in sequence
-      blocks.forEach((block, index) => {
-        setTimeout(() => {
-          block.classList.add('slide-up');
-        }, index * 150); // 👈 Change this number to change speed of bar animation
-      });
-  
-      // Step 3: Reveal content
-      const totalAnimationTime = NUM_BLOCKS * 200 + 800;
-      setTimeout(() => {
-        document.getElementById('preloader').style.display = 'none';
-        content.style.display = 'block';
-        document.body.style.overflow = 'auto';
-      }, totalAnimationTime);
-  
-    }, 2000);
-  });
 
 
 
-// SOLUTIONS CARD CURSOR GLOW
+
+
+/*----------------------------------------------
+  SOLUTIONS CARD CURSOR GLOW
+----------------------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.solution-card').forEach(card => {
         const glow = card.querySelector('.glow');
@@ -364,7 +419,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// HEADER BURGER MENU
+
+
+
+
+
+
+/*----------------------------------------------
+  HEADER BURGER MENU
+----------------------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
     const headerBurger = document.getElementById('header-burger');
     const navLinks = document.querySelector('.nav-links');

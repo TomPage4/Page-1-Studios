@@ -1,8 +1,3 @@
-:root {
-    --total: 10; /* Change this to match the number of blocks you use */
-  }
-  
-
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +19,9 @@ body {
 
 
 
-/* SECTION DIVIDER */
+/*----------------------------------------------
+  SECTION DIVIDER
+----------------------------------------------*/
 .section-divider {
     border: none;
     height: 1px;
@@ -35,7 +32,17 @@ body {
 
 
 
-/* PRE-LOADER */
+/*----------------------------------------------
+  PRELOADER
+----------------------------------------------*/
+html.preload-active,
+body.preload-active {
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+}
+
 #preloader {
     position: fixed;
     top: 0;
@@ -43,9 +50,9 @@ body {
     width: 100%;
     height: 100%;
     z-index: 9999;
-  }
-  
-  #logo-container {
+}
+
+#preloader-logo-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -57,31 +64,27 @@ body {
     justify-content: center;
     transition: opacity 1s ease-in-out;
     background-color: black;
-  }
-  
-  #logo {
+}
+
+#preloader-logo {
     width: 25vw;
     max-width: 500px;
-    min-width: 100px;
+    min-width: 200px;
     height: auto;
-  }
-  
-  .block {
+}
+
+.preloader-block-bar {
     position: absolute;
     top: 0;
     height: 100%;
     background: black;
     transform: translateY(0%);
     transition: transform 0.6s ease-in-out;
-  }
-  
-  .block.slide-up {
+}
+
+.preloader-block-slide-up {
     transform: translateY(-100%);
-  }
-  
-  #content {
-    padding: 40px;
-  }
+}
 
 
 
@@ -90,8 +93,10 @@ body {
 
 
 
-/* HEADER */
 
+/*----------------------------------------------
+  HEADER
+----------------------------------------------*/
 .site-header {
     position: fixed;
     top: 1rem;
@@ -119,12 +124,10 @@ body {
     align-items: center;
 }
 
-/* Logo appearence */
 .logo img {
     height: 2.5rem;
 }
 
-/* Logo hover animation */
 .logo {
     position: relative;
 }
@@ -154,7 +157,6 @@ body {
     gap: 4rem;
 }
 
-/* Navigation links appearence */
 .nav-links a {
     text-decoration: none;
     transition: color 0.4s ease;
@@ -162,7 +164,6 @@ body {
     position: relative;
 }
 
-/* Navigation links hover animation */
 .nav-links a::after,
 .nav-links a::before {
     content: '';
@@ -185,9 +186,8 @@ body {
 .header-burger {
     display: none;
 }
-
 /* Hide nav and show burger on small screens */
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .nav-links {
         display: flex;
         flex-direction: column;
@@ -240,7 +240,7 @@ body {
     .header-burger span {
         display: block;
         height: 3px;
-        width: 100%; /* ensure lines match burger width */
+        width: 100%;
         background-color: #DEDBD2;
     }
 
@@ -252,7 +252,7 @@ body {
         width: 100vw;
         background-color: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(8px);
-        z-index: 999; /* Just behind the .site-header (1000) */
+        z-index: 999;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
@@ -279,7 +279,6 @@ body {
         transition: all 0.3s ease;
     }
     
-    /* Sequential nav link animation */
     .nav-links li {
         opacity: 0;
         transform: translateY(10px);
@@ -294,12 +293,15 @@ body {
     .nav-links.active li:nth-child(1) {
         transition-delay: 0.1s;
     }
+
     .nav-links.active li:nth-child(2) {
         transition-delay: 0.2s;
     }
+
     .nav-links.active li:nth-child(3) {
         transition-delay: 0.3s;
     }
+
     .nav-links.active li:nth-child(4) {
         transition-delay: 0.4s;
     }
@@ -314,8 +316,9 @@ body {
 
 
 
-/* INTRO */
-
+/*----------------------------------------------
+  INTRO
+----------------------------------------------*/
 .intro {
     position: relative;
     display: flex;
@@ -324,10 +327,10 @@ body {
     height: 100vh;
     align-items: center;
     z-index: 1;
-    overflow: hidden; /* Ensures the video doesn't overflow the container */
+    overflow: hidden;
 }
 
-.video-background {
+.intro-video-background {
     position: absolute;
     top: 0;
     left: 50%;
@@ -340,43 +343,36 @@ body {
     pointer-events: none;
 }
 
-.background-overlay {
+.intro-background-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Black overlay with 50% opacity */
-    z-index: -1; /* Ensures the overlay stays behind the text and other content */
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
-.intro-container {
+.intro-content-container {
     padding-left: 10%;
     padding-right: 25%;
 }
 
-.intro-text {
-    font-size: 3rem;
+.intro-text-content {
+    font-size: clamp(2rem, 3vw, 3rem);
     line-height: 3rem;
 }
 
-.intro-text a {
+.intro-text-content a {
     text-decoration: none;
     transition: color 0.5s ease;
     font-weight: 100;
 }
 
-.intro-text a:hover {
+.intro-text-content a:hover {
     color: #ff2692;
 }
 
-@media screen and (max-width: 800px) {
-    .intro-text {
-        font-size: 2rem;
-    }
-}
-
-/* Typewriter cursor */
 .typewriter-cursor::after {
     content: '|';
     animation: blink 0.7s infinite;
@@ -388,11 +384,11 @@ body {
     50% { opacity: 0; }
 }
 
-.intro-social {
+.intro-social-links {
     display: flex;
     position: absolute;
     right: 0;
-    padding-right: 3rem;
+    padding: 0 3rem;
     gap: 2rem;
     height: 100%;
     flex-direction: column;
@@ -400,7 +396,7 @@ body {
 }
 
 .intro-social-icon {
-    width: 4rem;
+    width: clamp(2.8rem, 5vw, 4rem);
     transition: transform 0.3s ease;
 }
 
@@ -414,7 +410,10 @@ body {
 
 
 
-/* ANIMATED PRESETS */
+
+/*----------------------------------------------
+  ANIMATED PRESETS
+----------------------------------------------*/
 /* Animated header */
 .animated-header {
     padding: 0.6rem 1.5rem;
@@ -465,6 +464,12 @@ body {
     }
 }
 
+@media (max-width: 1000px) {
+    .animated-header {
+        padding: 0.4rem 1rem;
+    }
+}
+
 /* Animated button */
 .animated-button {
     cursor: pointer;
@@ -491,7 +496,9 @@ body {
 
 
 
-/* ABOUT */
+/*----------------------------------------------
+  ABOUT
+----------------------------------------------*/
 .about {
     position: relative;
     height: 100vh;
@@ -504,43 +511,43 @@ body {
     display: flex;
     width: 100%;
 }
-/* About images */
+
 .slideshow-wrapper {
     width: 50%;
     height: 100%;
     overflow: hidden;
     position: relative;
 }
-  
+
 .slideshow-track {
     display: flex;
     height: 100%;
     transition: transform 1s ease-in-out;
 }
-  
+
 .slideshow-track img {
-    flex: 0 0 50vw;
+    flex: 0 0 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
     transition: filter 0.5s ease;
+    display: block;
 }
 
 .slideshow-track img:hover {
     filter: grayscale(0%);
 }
 
-/* About content */
 .about-content {
     width: 50%;
     padding: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
 }
 
-/* About header */
 #about-header {
     align-self: flex-start;
 }
@@ -549,13 +556,34 @@ body {
     line-height: 1.6;
 }
 
-/* About paragraph */
 #about-text-1 {
     padding-top: 2rem;
 }
 
 #about-text-2 {
-    padding-top: 3rem;
+    padding-top: clamp(1rem, 4vw, 3rem);
+}
+
+@media (max-width: 1000px) {
+    .about-container {
+        flex-direction: column;
+    }
+
+    .slideshow-wrapper,
+    .about-content {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .about-content {
+        padding: 2rem;
+        padding-top: 1rem;
+    }
+
+    .slideshow-track img {
+        flex: 0 0 100vw;
+        height: 50vh;
+    }
 }
 
 
@@ -565,78 +593,82 @@ body {
 
 
 
-/* WORK */
+
+/*----------------------------------------------
+  WORK
+----------------------------------------------*/
 .work {
     height: 100vh;
     width: 100%;
     position: relative;
 }
 
-/* Work header */
 .work-header-container {
-    text-align: center; /*Centers work header*/
-    padding-top: 7rem; /*Push content down from top of work section*/
-    margin: 0 10%;
+    text-align: center;
+    padding-top: 7rem;
+    margin: 0 15%;
     height: 30%;
 }
 
 #work-header {
-    display: inline-block; /*Stops work header spanning the screen*/
+    display: inline-block;
 }
 
 .work-header-text {
     padding-top: 2.5rem;
-    font-size: 2.5rem;
-}
-/* Work cards */
-.work-card-container {
-    display: flex;
-    gap: 1rem; /*Gap between work cards*/
-    justify-content: center;
-    height: 70%;
-    padding-top: 2rem;
+    font-size: clamp(1.2rem, 2vw + 1rem, 2.5rem);
+    line-height: clamp(1.4rem, 2vw + 1.2rem, 3rem);
 }
 
+.work-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1rem;
+    padding: 4rem 10%;
+    height: 70%;
+    padding-top: 6rem;
+}
+  
 .work-card {
     position: relative;
-    width: 10rem; /*Initial width*/
+    height: 95%;
     border-radius: 8px;
     background-size: cover;
     background-position: center;
-    box-shadow: 1px 2px 10px #204447;
+    box-shadow: 1px 2px 15px rgba(0,0,0,0.5);
     overflow: hidden;
-    transition: width 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
     cursor: pointer;
     z-index: 1;
-    height: 80%;
 }
-/* Creating dark effect for when user hovers on card */
+
 .work-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgb(0, 0, 0), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 1;
 }
-/* Shows dark effect when user hovers on card */
+
 .work-card:hover::before {
     opacity: 1;
 }
-/* Card animation on hover */
+
 .work-card:hover {
-    width: 15rem; /*Width once user hovers*/
     transform: translateY(-7%);
     z-index: 2;
 }
-/* Text on work card */
+  
 .work-content {
     position: absolute;
     bottom: 0;
     width: 100%;
     padding: 20px;
-    background: linear-gradient(to top, rgb(0, 0, 0), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     transform: translateY(100%);
     opacity: 0;
     transition: transform 0.4s ease, opacity 0.4s ease;
@@ -645,27 +677,30 @@ body {
     align-items: flex-start;
     z-index: 2;
 }
-/* Make text appear when user hovers on work card */
+  
 .work-card:hover .work-content {
     transform: translateY(0%);
     opacity: 1;
 }
-/* Work card title text */
+  
 .work-content h2 {
     font-size: 1.6rem;
 }
-/* Work card main text */
+  
 .work-content span {
     margin-top: 0.7rem;
     font-size: 0.8rem;
 }
+  
 
 
 
 
 
 
-/* SOLUTIONS */
+/*----------------------------------------------
+  SOLUTIONS
+----------------------------------------------*/
 .solutions {
     height: 100vh;
     width: 100%;
@@ -673,8 +708,8 @@ body {
 }
 
 .solutions-header-container {
-    text-align: center; /*Centers work header*/
-    padding-top: 7rem; /*Push content down from top of work section*/
+    text-align: center;
+    padding-top: 7rem;
     height: 20%;
 }
 
@@ -696,23 +731,23 @@ body {
     grid-template-rows: 1fr 1fr;
     gap: 2rem;
     height: 100%;
-    margin-bottom: 5vh;
+    padding-bottom: 5vh;
 }
 
 .solution-card {
     position: relative;
     overflow: hidden;
     border-radius: 1rem;
-    padding: 2rem;
+    padding: clamp(1rem, 2vw + 0.5rem, 2.5rem);
     text-decoration: none;
     border: 0.2rem solid #DEDBD2;
 }
 
 .glow {
     position: absolute;
-    width: 40rem;
-    height: 40rem;
-    background: radial-gradient(circle, rgba(222, 219, 210, 0.25), transparent 70%);
+    width: 20vw;
+    height: 20vw;
+    background: radial-gradient(circle, rgba(222, 219, 210, 0.1), transparent 70%);
     pointer-events: none;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -724,29 +759,29 @@ body {
     opacity: 1;
 }
 
-.card-1 {
+.solution-card-1 {
     grid-column: 1 / 2;
     grid-row: 1;
 }
 
-.card-2 {
+.solution-card-2 {
     grid-column: 2 / 3;
     grid-row: 1;
 }
 
-.card-3 {
+.solution-card-3 {
     grid-column: 1 / 3;
     grid-row: 2;
 }
 
 .solution-card h3 {
-    font-size: 2.5vh;
+    font-size: clamp(1rem, 1.3vw + 0.5rem, 1.6rem);
     color: #ff2692;
     margin-bottom: 1.2vh;
 }
 
 .solution-card h4 {
-    font-size: 3.2vh;
+    font-size: clamp(1.2rem, 1.6vw + 0.6rem, 2rem);
     margin-bottom: 1.2vh;
 }
 
@@ -756,7 +791,9 @@ body {
 }
 
 .solution-card p {
-    margin-bottom: 1vh;
+    font-size: clamp(0.7rem, 1vw + 0.2rem, 1.1rem);
+    margin-bottom: clamp(0rem, 0.5vw + 0.1rem, 0.6rem);
+    line-height: clamp(0.8rem, 2vw, 1.3rem);;
 }
 
 .solution-card ul {
@@ -764,14 +801,58 @@ body {
 }
 
 .solution-card li {
-    line-height: 1.6rem;
+    font-size: clamp(0.7rem, 1vw + 0.2rem, 1.1rem);
+    line-height: clamp(0.5rem, 1.2vw + 0.4rem, 1.4rem);
+}
+
+.solution-card-footer {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    font-size: clamp(0.8rem, 1vw + 0.2rem, 1rem);
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.solution-card-footer-text {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.solution-card-footer-arrow {
+    display: inline-block;
+    margin-left: 0.3rem;
+    font-size: 1.4em;
+    transform: translate(0, -2px);
+    transition: transform 0.3s ease;
+}
+  
+.solution-card:hover .solution-card-footer-arrow {
+    transform: translate(4px, -2px) scale(1.15);
+}
+  
+.solution-card:hover .solution-card-footer-text {
+    transform: scale(1.1);
 }
 
 
 
 
 
-/* CONTACT */
+
+
+
+
+
+
+
+
+/*----------------------------------------------
+  CONTACT
+----------------------------------------------*/
 .contact {
     height: 100vh;
     width: 100%;
@@ -785,8 +866,7 @@ body {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    margin-left: 5%;
-    margin-right: 20%;
+    padding: 0 5%;
 }
 
 #contact-header {
@@ -795,40 +875,48 @@ body {
 
 .contact-text {
     font-size: 2.5rem;
+}
+
+#contact-text-1 {
     padding-top: 3rem;
+}
+
+#contact-text-2 {
+    padding-top: 1.5rem;
 }
 
 #contact-form {
     flex: 1;
     display: flex;
-    flex-direction: column; /* Horizontally center form */
-    justify-content: center; /* Vertically center the form */
+    flex-direction: column;
+    justify-content: center;
 }
 
 .contact label {
-    font-size: 1.2rem; /* Increase label text size */
-    margin-bottom: 0.5rem; /* Small gap between label and input */
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
 }
 
 .contact-input {
-    width: 80%;
+    max-width: 80%;
     background-color: #15292c;
-    font-size: 1.1rem; /* Increase input text size */
-    border: 2px solid #ff2692; /* Add pink border */
+    font-size: 1.2rem;
+    border: 2px solid #ff2692;
     padding: 0.5rem;
     transition: box-shadow 0.3s ease, border 0.3s ease;
     border-radius: 4px;
+    font-family: inherit;
 }
 
 .contact-input:focus {
     outline: none;
-    box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.5); /* Soft pink glow */
+    box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.5);
     border-color: #ff2692;
 }
 
 .contact-input.invalid:focus {
-    box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.5); /* Red glow for invalid */
-    border-color: #FF0000; /* Red border */
+    box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.5);
+    border-color: #FF0000;
 }
 
 #contact-submit-button {
@@ -840,6 +928,10 @@ body {
 
 #contact-submit-button:hover {
     color: #DEDBD2;
+}
+
+#message {
+    min-height: 6rem;
 }
 
 .error {
@@ -854,12 +946,65 @@ body {
     margin-bottom: 2rem;
 }
 
+.honeypot {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#contact-submit-button.submitting {
+    background-position: left;
+    color: #DEDBD2;
+}
+
+@media (max-width: 1000px) {
+    .contact {
+        flex-direction: column;
+    }
+
+    .contact-header-container {
+        text-align: center;
+    }
+
+    #contact-header {
+        align-self: center;
+    }
+  
+    .contact-header-container,
+    #contact-form {
+        padding: 0 8%;
+    }
+  
+    .contact-text {
+        font-size: 2rem;
+        padding-top: 2.5rem;
+    }
+  
+    .contact-input {
+         max-width: 100%;
+    }
+
+    #contact-form {
+        padding-bottom: 10rem;
+    }
+}
+  
 
 
 
 
 
 
+
+
+
+/*----------------------------------------------
+  SOURCE CODE
+----------------------------------------------*/
 .source-code {
     height: 100vh;
     width: 100%;
@@ -883,12 +1028,13 @@ body {
 }
 
 #source-code-header {
-    display: inline-block; /*Stops work header spanning the screen*/
+    display: inline-block;
 }
 
 .source-code-text {
-    padding-top: 3rem;
-    font-size: 2rem;
+    padding-top: clamp(1.8rem, 2vw, 3rem);
+    font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+    line-height: clamp(2rem, 3vw, 3.5rem);
 }
 
 .enter-repository-container {
@@ -921,7 +1067,11 @@ body {
 
 
 
-/* FOOTER */
+
+
+/*----------------------------------------------
+  FOOTER
+----------------------------------------------*/
 .site-footer {
     height: 30vh;
     width: 100%;
