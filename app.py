@@ -107,11 +107,10 @@ def contact():
     )
 
     try:
+        print("About to send mail to:", msg.recipients)
         mail.send(msg)
         return jsonify({"success": True})
     except Exception as e:
-        import traceback
-        print(traceback.format_exc())  # <-- helps show error in logs
         return jsonify({"success": False, "error": str(e)}), 500
 
 

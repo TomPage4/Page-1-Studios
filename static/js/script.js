@@ -454,3 +454,26 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.classList.remove("active");
     });
 });
+
+
+
+
+
+
+
+
+
+/*----------------------------------------------
+  FORCE VIDEO PLAY
+----------------------------------------------*/
+document.addEventListener("DOMContentLoaded", () => {
+    const video = document.querySelector('.intro-video-background');
+  
+    if (video) {
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && video.paused) {
+                video.play();
+            }
+        });
+    }
+});
