@@ -110,7 +110,10 @@ def contact():
         mail.send(msg)
         return jsonify({"success": True})
     except Exception as e:
+        import traceback
+        print(traceback.format_exc())  # <-- helps show error in logs
         return jsonify({"success": False, "error": str(e)}), 500
+
 
 if __name__ == '__main__':
     # app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
