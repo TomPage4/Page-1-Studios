@@ -14,6 +14,10 @@ body {
     background-color: #041416;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 
 
 
@@ -427,6 +431,7 @@ body.preload-active {
 ----------------------------------------------*/
 /* Animated header */
 .animated-header {
+    position: relative;
     padding: 0.6rem 1.5rem;
     border-radius: 9999px;
     background-color: #ff2692;
@@ -512,7 +517,7 @@ body.preload-active {
 ----------------------------------------------*/
 .about {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     z-index: 2;
     width: 100%;
@@ -556,7 +561,7 @@ body.preload-active {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-size: clamp(1.3rem, 1.7vw, 1.4rem);
 }
 
 #about-header {
@@ -583,19 +588,33 @@ body.preload-active {
     .slideshow-wrapper,
     .about-content {
         width: 100%;
-        height: 50vh;
     }
 
     .about-content {
-        padding: 2rem;
-        padding-top: 1rem;
+        padding: 1.7rem;
+        font-size: clamp(0.9rem, 2.6vw, 1.2rem);
     }
 
     .slideshow-track img {
-        flex: 0 0 100vw;
-        height: 50vh;
+        flex: 0 0 100%;
     }
 }
+
+@media (max-width: 600px) {
+    .about-content {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    #about-header {
+        font-size: 1.2rem;
+    }
+
+    .about-text {
+        line-height: 1.5;
+    }
+}
+
 
 
 
@@ -627,8 +646,8 @@ body.preload-active {
 
 .work-header-text {
     padding-top: 2.5rem;
-    font-size: clamp(1.2rem, 2vw + 1rem, 2.5rem);
-    line-height: clamp(1.4rem, 2vw + 1.2rem, 3rem);
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    line-height: clamp(2.2rem, 3.2vw, 3rem);
 }
 
 .work-card-container {
@@ -702,7 +721,49 @@ body.preload-active {
     margin-top: 0.7rem;
     font-size: 0.8rem;
 }
-  
+
+@media (max-width: 600px) {
+    .work {
+        min-height: 100vh;
+        height: auto;
+        padding-bottom: 3rem; /* Allows space after cards */
+    }
+
+    .work-header-container {
+        padding-top: 4rem;
+        margin: 0 1.5rem;
+        height: auto;
+    }
+
+    .work-header-text {
+        padding-top: 1.5rem;
+        font-size: clamp(1rem, 4vw, 1.4rem);
+        line-height: 1.5;
+    }
+
+    .work-card-container {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        height: auto;
+    }
+
+    .work-card {
+        height: 50vw;
+        min-height: 200px; /* fallback if 50vw is too small */
+    }
+
+    .work-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .work-content span {
+        font-size: 0.8rem;
+    }
+}
+
+
 
 
 
