@@ -140,15 +140,22 @@ function stopAutoSlide() {
     clearInterval(autoSlideInterval);
 }
 
-slideshowTrack.addEventListener('mouseenter', () => {
-    isHovered = true;
-    stopAutoSlide();
-});
+function isTouchDevice() {
+    return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+}
 
-slideshowTrack.addEventListener('mouseleave', () => {
-    isHovered = false;
-    startAutoSlide();
-});
+if (!isTouchDevice()) {
+    slideshowTrack.addEventListener('mouseenter', () => {
+        isHovered = true;
+        stopAutoSlide();
+    });
+
+    slideshowTrack.addEventListener('mouseleave', () => {
+        isHovered = false;
+        startAutoSlide();
+    });
+}
+
 
 window.addEventListener('resize', updateSlideWidthAndPosition);
 updateSlideWidthAndPosition();

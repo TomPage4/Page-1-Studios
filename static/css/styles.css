@@ -616,6 +616,16 @@ body.preload-active {
     }
 }
 
+@media (hover: none) and (pointer: coarse) {
+    .slideshow-track img {
+        filter: grayscale(0%) !important;
+    }
+
+    .slideshow-track img:hover {
+        filter: grayscale(0%) !important;
+    }
+}
+
 
 
 
@@ -732,7 +742,7 @@ body.preload-active {
     }
 
     .work-header-container {
-        padding-top: 4rem;
+        padding-top: 7rem;
         margin: 0 1.5rem;
         height: auto;
     }
@@ -773,6 +783,10 @@ body.preload-active {
     .work-card .work-content {
         transform: translateY(0%);
         opacity: 1;
+    }
+    
+    .work-card-container {
+        gap: 1.5rem
     }
 }
 
