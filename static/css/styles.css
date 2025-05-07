@@ -116,6 +116,7 @@ body.preload-active {
 .site-header.scrolled {
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -261,6 +262,7 @@ body.preload-active {
         width: 100vw;
         background-color: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         z-index: 999;
         opacity: 0;
         pointer-events: none;
@@ -355,6 +357,7 @@ body.preload-active {
     height: 100%;
     object-fit: cover;
     filter: blur(10px);
+    -webkit-filter: blur(10px);
 }
 
 
@@ -374,7 +377,7 @@ body.preload-active {
 }
 
 .intro-text-content {
-    font-size: clamp(1.5rem, 3vw, 3rem);
+    font-size: clamp(1.5rem, 3.2vw, 3rem);
     line-height: clamp(1.8rem, 3vw, 3rem);
 }
 
@@ -437,7 +440,6 @@ body.preload-active {
     background-color: #ff2692;
     border: 1px solid #ff2692;
     font-size: 1.4rem;
-    backdrop-filter: blur(1000px);
     overflow: hidden;
     z-index: 1;
 }
@@ -602,7 +604,6 @@ body.preload-active {
 
 @media (max-width: 600px) {
     .about-content {
-        padding: 1rem;
         font-size: 1rem;
     }
 
@@ -628,7 +629,8 @@ body.preload-active {
   WORK
 ----------------------------------------------*/
 .work {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
     position: relative;
 }
@@ -646,7 +648,7 @@ body.preload-active {
 
 .work-header-text {
     padding-top: 2.5rem;
-    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
     line-height: clamp(2.2rem, 3.2vw, 3rem);
 }
 
@@ -654,14 +656,14 @@ body.preload-active {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     gap: 1rem;
-    padding: 4rem 10%;
-    height: 70%;
+    padding: 4rem 5%;
     padding-top: 6rem;
+    height: auto;
 }
   
 .work-card {
     position: relative;
-    height: 95%;
+    height: 50vw;
     border-radius: 8px;
     background-size: cover;
     background-position: center;
@@ -722,7 +724,7 @@ body.preload-active {
     font-size: 0.8rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
     .work {
         min-height: 100vh;
         height: auto;
@@ -737,21 +739,25 @@ body.preload-active {
 
     .work-header-text {
         padding-top: 1.5rem;
-        font-size: clamp(1rem, 4vw, 1.4rem);
+        font-size: clamp(1rem, 4vw, 1.8rem);
         line-height: 1.5;
     }
 
     .work-card-container {
         display: flex;
         flex-direction: column;
-        padding: 2rem 1.5rem;
-        gap: 1.5rem;
+        padding: 2rem 7%;
+        gap: 2rem;
         height: auto;
     }
 
     .work-card {
-        height: 50vw;
-        min-height: 200px; /* fallback if 50vw is too small */
+        height: 32vw;
+        min-height: 12rem;
+    }
+
+    .work-card:hover {
+        transform: translateY(-5%);
     }
 
     .work-content h2 {
@@ -760,6 +766,13 @@ body.preload-active {
 
     .work-content span {
         font-size: 0.8rem;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .work-card .work-content {
+        transform: translateY(0%);
+        opacity: 1;
     }
 }
 
