@@ -4,6 +4,7 @@
     box-sizing: border-box;
     color: #DEDBD2;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
   
 body {
@@ -14,9 +15,9 @@ body {
     background-color: #041416;
 }
 
-html, body {
+/* html, body {
     overflow-x: hidden;
-}
+} */
 
 
 
