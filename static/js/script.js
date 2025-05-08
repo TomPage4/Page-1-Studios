@@ -210,10 +210,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = document.getElementById('name');
         const email = document.getElementById('email');
         const message = document.getElementById('message');
-        const honeypot = document.getElementById('phone'); // Hidden bot trap
+        const honeypot = document.getElementById('company_website');
 
         if (honeypot.value.trim() !== "") {
-            return; // Bot detected, silently block
+            return;
         }
 
         if (name.value.trim() === '') {

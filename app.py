@@ -69,8 +69,9 @@ def apply_csp(response):
 @limiter.limit("3 per hour")
 def contact():
     # Honeypot check
-    if request.form.get('phone'):
+    if request.form.get('company_website'):
         return jsonify({"success": False}), 400
+
 
     name = bleach.clean(request.form.get('name', '').strip())
     email = bleach.clean(request.form.get('email', '').strip())
