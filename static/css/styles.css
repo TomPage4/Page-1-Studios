@@ -818,12 +818,11 @@ body.preload-active {
 .solutions-card-container {
     max-width: 100rem;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     gap: 3rem;
     box-sizing: border-box;
-    margin: 4rem;
 }
 
 .solutions-grid {
@@ -964,10 +963,6 @@ body.preload-active {
 }
 
 @media (max-width: 800px) {
-    .solutions-card-container {
-        margin: 3rem 2rem;
-    }
-  
     .solutions-grid {
         display: flex;
         flex-direction: column;
