@@ -4,20 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Tab name and logo -->
-    <title>Page 1 Studios</title>
-    <link rel="icon" href="/static/images/P1S.svg" type="image/png">
+    <title>Page 1 Studios | Web Development by Tom Page</title>
+    <link rel="icon" href="/static/images/favicon.ico" sizes="any">
+    <link rel="icon" href="/static/images/P1S.svg" type="image/svg+xml">
+    
     <!-- CSS -->
     <link rel="stylesheet" href="../static/css/styles.css">
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- SEO -->
+    <meta name="description" content="Web design by Tom Page | Page 1 Studios helps businesses and individuals build powerful, modern websites.">
+    <meta name="keywords" content="web design, Cardiff, Page 1 Studios, Tom Page, portfolio, freelance web developer">
+    <meta name="author" content="Tom Page">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.page1studios.com/">
+    <meta property="og:title" content="Page 1 Studios | Web Design by Tom Page">
+    <meta property="og:description" content="Helping brands make their mark online. See our work and get in touch.">
+    <meta property="og:image" content="/static/images/P1S.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.page1studios.com/">
+    <meta name="twitter:title" content="Page 1 Studios | Web Design by Tom Page">
+    <meta name="twitter:description" content="Helping brands make their mark online. See our work and get in touch.">
+    <meta name="twitter:image" content="https://www.page1studios.com/static/images/P1S.png">
 </head>
 <body class="preload-active">
 
     <div id="preloader">
         <div id="preloader-logo-container">
-            <img src="/static/images/logo.svg" alt="Logo" id="preloader-logo" />
+            <img src="/static/images/logo.svg" alt="Page 1 Studios logo" id="preloader-logo" />
         </div>
         <div id="preloader-blocks-container"></div>
     </div>
@@ -25,8 +44,8 @@
     <header class="site-header">
         <div class="header-container">
             <div class="logo">
-                <a href="#intro">
-                    <img src="/static/images/logo.svg" alt="Logo" />
+                <a href="#intro" aria-label="Scroll to intro section">
+                    <img src="/static/images/logo.svg" alt="Page 1 Studios logo" />
                 </a>
             </div>
             <div class="header-burger" id="header-burger">
@@ -36,10 +55,10 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#solutions">Solutions</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about" aria-label="Scroll to about section">About</a></li>
+                    <li><a href="#work" aria-label="Scroll to work section">Work</a></li>
+                    <li><a href="#solutions" aria-label="Scroll to solutions section">Solutions</a></li>
+                    <li><a href="#contact" aria-label="Scroll to contact section">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -65,13 +84,13 @@
             </div>
             <div class="intro-social-links">
                 <a href="https://www.linkedin.com/in/tom-page-/" target="_blank">
-                    <img src="/static/images/linkedin.svg" alt="LinkedIn" class="intro-social-icon">
+                    <img src="/static/images/linkedin.svg" alt="Link to Tom Page LinkedIn" class="intro-social-icon">
                 </a>
-                <a href="#" target="_blank">
-                    <img src="/static/images/instagram.svg" alt="Instagram" class="intro-social-icon">
+                <a href="https://www.instagram.com/page.1.studios/" target="_blank">
+                    <img src="/static/images/instagram.svg" alt="Link to Page 1 Studios Instagram" class="intro-social-icon">
                 </a>
                 <a href="https://github.com/TomPage4" target="_blank">
-                    <img src="/static/images/github.svg" alt="GitHub" class="intro-social-icon">
+                    <img src="/static/images/github.svg" alt="Link to Tom Page GitHub" class="intro-social-icon">
                 </a>
             </div>
         </section>
@@ -83,9 +102,9 @@
             <div class="about-container">
                 <div class="slideshow-wrapper">
                     <div class="slideshow-track" id="slideshow-track">
-                        <img src="/static/images/about-1.jpeg" alt="Slide 1" />
-                        <img src="/static/images/about-2.jpg" alt="Slide 2" />
-                        <img src="/static/images/about-3.jpeg" alt="Slide 3" />
+                        <img src="/static/images/about-1.jpeg" alt="Tom Page portrait" />
+                        <img src="/static/images/about-2.jpg" alt="Tom Page portrait on mountain" />
+                        <img src="/static/images/about-3.jpeg" alt="Tom Page in London" />
                     </div>
                 </div>
                 <div class="about-content">
@@ -221,7 +240,7 @@
                 <p class="error-message" id="message-error"></p>
 
                 <!-- Honeypot field (obfuscated) -->
-                <input type="text" id="company_website" name="company_website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <input type="text" id="referral_code" name="referral_code" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
 
                 <button type="submit" class="animated-button" id="contact-submit-button">Reach out</button>
             </form>
@@ -237,7 +256,7 @@
                 <p class="source-code-text">Curious minds are welcome. Your journey through the code begins here.</p>
             </div>
             <div class="enter-repository-container">
-                <a href="https://github.com/TomPage4/website-portfolio/tree/main" target="_blank">
+                <a href="https://github.com/TomPage4/Page-1-Studios" target="_blank">
                     <button class="animated-button" id="enter-repository-button">ENTER</button>
                 </a>
             </div>
@@ -267,13 +286,13 @@
 
             <div class="footer-social">
                 <a href="https://www.linkedin.com/in/tom-page-/" target="_blank">
-                    <img src="/static/images/linkedin.svg" alt="LinkedIn" class="footer-social-icon">
+                    <img src="/static/images/linkedin.svg" alt="Link to Tom Page LinkedIn" class="footer-social-icon">
                 </a>
-                <a href="#" target="_blank">
-                    <img src="/static/images/instagram.svg" alt="Instagram" class="footer-social-icon">
+                <a href="https://www.instagram.com/page.1.studios/" target="_blank">
+                    <img src="/static/images/instagram.svg" alt="Link to Page 1 Studios Instagram" class="footer-social-icon">
                 </a>
                 <a href="https://github.com/TomPage4" target="_blank">
-                    <img src="/static/images/github.svg" alt="GitHub" class="footer-social-icon">
+                    <img src="/static/images/github.svg" alt="Link to Tom Page GitHub" class="footer-social-icon">
                 </a>
             </div>
         </section>

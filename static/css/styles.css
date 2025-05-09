@@ -506,6 +506,13 @@ body.preload-active {
     background-position: left bottom;
 }
 
+@media (hover: none) and (pointer: coarse) {
+    .animated-button:hover {
+        transform: none;
+        background-position: right bottom;
+    }
+}
+
 
 
 
@@ -1083,14 +1090,16 @@ body.preload-active {
     margin-bottom: 2rem;
 }
 
-.honeypot {
-    position: absolute;
-    left: -9999px;
+.hp-field {
+    position: absolute !important;
+    left: -10000px;
     top: auto;
     width: 1px;
     height: 1px;
     overflow: hidden;
     z-index: -1;
+    opacity: 0;
+    pointer-events: none;
 }
 
 #contact-submit-button.submitting {
@@ -1218,6 +1227,11 @@ body.preload-active {
     color: red;
 }
 
+@media (hover: none) and (pointer: coarse) {
+    #enter-repository-button:hover {
+        color: #041416;
+    }
+}
 
 
 
@@ -1305,7 +1319,7 @@ body.preload-active {
 .affiliate {
     position: absolute;
     left: 1rem;
-    bottom: 1rem;
+    bottom: 2rem;
     display: flex;
     align-items: center;
     z-index: 1;
@@ -1322,6 +1336,14 @@ body.preload-active {
 }
 
 @media (hover: none) and (pointer: coarse) {
+    .footer-nav-links a:hover {
+        color: #DEDBD2;
+    }
+
+    .footer-social-icon:hover {
+        filter: none;
+    }
+
     .affiliate a {
         color: #ff2692;
     }

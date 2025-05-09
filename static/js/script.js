@@ -210,9 +210,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = document.getElementById('name');
         const email = document.getElementById('email');
         const message = document.getElementById('message');
-        const honeypot = document.getElementById('company_website');
+        const honeypot = document.getElementById('referral_code');
 
-        if (honeypot.value.trim() !== "") {
+        if (honeypot && honeypot.value.trim() !== "") {
             return;
         }
 

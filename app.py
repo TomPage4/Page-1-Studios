@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from flask_mail import Mail, Message
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -69,8 +69,8 @@ def apply_csp(response):
 @limiter.limit("3 per hour")
 def contact():
     # Honeypot check
-    if request.form.get('company_website'):
-        return jsonify({"success": False}), 400
+    if request.form.get('referral_code'):
+        return jsonify({"success": False, "message": "Spam detected"}), 400
 
 
     name = bleach.clean(request.form.get('name', '').strip())
@@ -114,6 +114,13 @@ def contact():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(app.static_folder, 'robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(app.static_folder, 'sitemap.xml')
 
 if __name__ == '__main__':
     # app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
