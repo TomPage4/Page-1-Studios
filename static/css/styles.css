@@ -1356,7 +1356,7 @@ body.preload-active {
     }
   
     .affiliate-right {
-        padding-top: 1rem;
+        padding-top: 0.5rem;
         align-self: flex-start;
     }
 }

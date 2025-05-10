@@ -131,5 +131,4 @@ def sitemap():
     return send_from_directory(app.static_folder, 'sitemap.xml')
 
 if __name__ == '__main__':
-    # app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
-    app.run(debug=True)
+    app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
