@@ -680,7 +680,8 @@ body.preload-active {
   
 .work-card {
     position: relative;
-    height: 50vw;
+    max-height: 40rem;
+    height: 55vh;
     border-radius: 8px;
     background-size: cover;
     background-position: center;
@@ -708,7 +709,7 @@ body.preload-active {
 }
 
 .work-card:hover {
-    transform: translateY(-7%);
+    transform: translateY(-6%);
     z-index: 2;
 }
   
