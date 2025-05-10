@@ -981,7 +981,13 @@ body.preload-active {
         min-height: auto;
     }
 }
-  
+
+@media (hover: none) and (pointer: coarse) {
+    .glow {
+        width: 0;
+        height: 0;
+    }
+}  
 
   
 

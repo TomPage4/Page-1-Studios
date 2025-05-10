@@ -385,13 +385,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }, index * 150);
         });
 
-        const totalAnimationTime = NUM_BLOCKS * 150 + 800;
+        const totalAnimationTime = NUM_BLOCKS * 200 + 800;
         setTimeout(() => {
             document.getElementById('preloader').style.display = 'none';
             document.documentElement.classList.remove('preload-active');
             document.body.classList.remove('preload-active');
         }, totalAnimationTime - 800);
-    }, 2000);
+    }, 1500);
 });
 
 
