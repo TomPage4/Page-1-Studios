@@ -359,7 +359,7 @@ window.addEventListener('resize', resizeCanvas);
 /*----------------------------------------------
   PRELOADER PAGE ANIMATION
 ----------------------------------------------*/
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const NUM_BLOCKS = 6;
 
     const preloaderContainer = document.getElementById('preloader-blocks-container');
