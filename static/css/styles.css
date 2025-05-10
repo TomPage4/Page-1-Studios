@@ -680,7 +680,6 @@ body.preload-active {
   
 .work-card {
     position: relative;
-    max-height: 40rem;
     height: 55vh;
     border-radius: 8px;
     background-size: cover;
