@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.classList.remove('preload-active');
             document.body.classList.remove('preload-active');
         }, totalAnimationTime - 800);
-    }, 1500);
+    }, 1000);
 });
 
 
