@@ -21,6 +21,10 @@ with open('jobs.json') as f:
 def home():
     return render_template('index.html', jobs=jobs)
 
+@app.route('/privacy-policy')
+def privacy_policy():
+    return render_template('privacy-policy.html')
+
 # Mail Configuration
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 app.config.update(
