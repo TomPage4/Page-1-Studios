@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, redirect
 from flask_mail import Mail, Message
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -28,6 +28,12 @@ def privacy_policy():
 @app.route('/terms-of-service')
 def terms_of_service():
     return render_template('terms-of-service.html')
+
+@app.before_request
+def redirect_non_www():
+    host = request.host
+    if host.startswith("page1studios.com") and not host.startswith("www."):
+        return redirect(f"https://www.page1studios.com{request.full_path}", code=301)
 
 # Mail Configuration
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
