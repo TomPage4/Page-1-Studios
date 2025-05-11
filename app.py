@@ -33,6 +33,9 @@ def terms_of_service():
 def sitemap():
     return send_from_directory(app.root_path, 'sitemap.xml')
 
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory(app.root_path, "robots.txt")
 
 @app.before_request
 def redirect_non_www():
