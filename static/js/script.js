@@ -302,27 +302,28 @@ document.addEventListener("DOMContentLoaded", function () {
 const canvas = document.getElementById('falling-code');
 const ctx = canvas.getContext('2d');
 const section = document.querySelector('.source-code');
+
 const computedStyles = window.getComputedStyle(section);
 const fontSizePx = computedStyles.fontSize;
 const fontFamily = computedStyles.fontFamily;
 const fontSize = parseFloat(fontSizePx);
 
+const letters = 'アァイィウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+
 let columns;
 let drops = [];
+let frame = 0;
+const frameDelay = 5;
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+function resizeCanvasToSection() {
+    const rect = section.getBoundingClientRect();
+
+    canvas.width = rect.width;
+    canvas.height = rect.height;
 
     columns = Math.floor(canvas.width / fontSize);
-    drops = Array(columns).fill(1); // Reset drops with new width
+    drops = Array(columns).fill(1);
 }
-
-resizeCanvas();
-
-const letters = 'アァイィウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
-let frame = 0;
-const frameDelay = 2; // Slows down animation
 
 function drawMatrix() {
     if (frame % frameDelay === 0) {
@@ -347,8 +348,13 @@ function drawMatrix() {
     requestAnimationFrame(drawMatrix);
 }
 
+// Observe size changes of the container, not window resizes
+const resizeObserver = new ResizeObserver(resizeCanvasToSection);
+resizeObserver.observe(section);
+
+// Initial setup
+resizeCanvasToSection();
 drawMatrix();
-window.addEventListener('resize', resizeCanvas);
 
 
 

@@ -823,9 +823,9 @@ body.preload-active {
 }
 
 .solutions-card-container {
-    max-width: 100rem;
+    max-width: 160rem;
     margin: 0 auto;
-    padding: 3rem;
+    padding: 3rem 10%;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -1183,11 +1183,16 @@ body.preload-active {
 
 #falling-code {
     font-size: 2.5rem;
-    z-index: 0;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;  /* Prevent touch/click interaction */
+    touch-action: none;    /* Prevent gesture/scroll interference */
 }
+
 
 .source-code-content {
     z-index: 1;
