@@ -136,13 +136,5 @@ def contact():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
-@app.route('/robots.txt')
-def robots():
-    return send_from_directory(app.static_folder, 'robots.txt')
-
-@app.route('/sitemap.xml')
-def sitemap():
-    return send_from_directory(app.static_folder, 'sitemap.xml')
-
 if __name__ == '__main__':
     app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
