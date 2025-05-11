@@ -40,7 +40,7 @@ def robots():
 @app.before_request
 def redirect_non_www():
     if request.host == "page1studios.com":
-        return redirect(f"https://www.page1studios.com", code=301)
+        return redirect(f"https://www.page1studios.com{request.path}", code=301)
     
 # @app.before_request
 # def redirect_to_render_domain():
