@@ -29,11 +29,14 @@ def privacy_policy():
 def terms_of_service():
     return render_template('terms-of-service.html')
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(app.root_path, 'sitemap.xml')
+
+
 @app.before_request
 def redirect_non_www():
-    # Check if the domain is non-www and if the protocol is either HTTP or HTTPS
     if request.host.startswith("page1studios.com") and not request.host.startswith("www."):
-        # Force HTTPS and www
         return redirect(f"https://www.page1studios.com{request.full_path}", code=301)
         
 
