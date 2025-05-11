@@ -37,10 +37,16 @@ def sitemap():
 def robots():
     return send_from_directory('static', 'robots.txt', mimetype='text/plain')
 
+# @app.before_request
+# def redirect_non_www():
+#     if request.host == "page1studios.com":
+#         return redirect(f"https://www.page1studios.com{request.path}", code=301)   
+    
 @app.before_request
-def redirect_non_www():
+def redirect_to_render_domain():
     if request.host == "page1studios.com":
-        return redirect(f"https://www.page1studios.com{request.path}", code=301)   
+        return redirect("https://page-1-studios.onrender.com", code=301)
+
 
 # Mail Configuration
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
