@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory, redirect
+from flask import Flask, render_template, request, jsonify, send_from_directory, redirect, make_response
 from flask_mail import Mail, Message
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -31,11 +31,15 @@ def terms_of_service():
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory(app.root_path, 'sitemap.xml')
+    response = make_response(send_from_directory(app.root_path, 'sitemap.xml'))
+    response.headers['Content-Type'] = 'application/xml'
+    return response
 
-@app.route("/robots.txt")
+@app.route('/robots.txt')
 def robots():
-    return send_from_directory(app.root_path, "robots.txt")
+    response = make_response(send_from_directory(app.root_path, 'robots.txt'))
+    response.headers['Content-Type'] = 'text/plain'
+    return response
 
 @app.before_request
 def redirect_non_www():
