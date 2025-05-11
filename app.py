@@ -31,11 +31,11 @@ def terms_of_service():
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory('static', 'sitemap.xml', mimetype='application/xml')
+    return send_from_directory('sitemap.xml', mimetype='application/xml')
 
 @app.route('/robots.txt')
 def robots():
-    return send_from_directory('static', 'robots.txt', mimetype='text/plain')
+    return send_from_directory('robots.txt', mimetype='text/plain')
 
 @app.before_request
 def redirect_non_www():
