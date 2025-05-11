@@ -39,9 +39,8 @@ def robots():
 
 @app.before_request
 def redirect_non_www():
-    if request.host.startswith("page1studios.com") and not request.host.startswith("www."):
-        return redirect(f"https://www.page1studios.com{request.full_path}", code=301)
-        
+    if request.host == "page1studios.com":
+        return redirect(f"https://www.page1studios.com{request.path}", code=301)   
 
 # Mail Configuration
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
