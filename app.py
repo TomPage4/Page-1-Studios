@@ -31,9 +31,11 @@ def terms_of_service():
 
 @app.before_request
 def redirect_non_www():
-    host = request.host
-    if host.startswith("page1studios.com") and not host.startswith("www."):
+    # Check if the domain is non-www and if the protocol is either HTTP or HTTPS
+    if request.host.startswith("page1studios.com") and not request.host.startswith("www."):
+        # Force HTTPS and www
         return redirect(f"https://www.page1studios.com{request.full_path}", code=301)
+        
 
 # Mail Configuration
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
