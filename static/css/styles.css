@@ -107,6 +107,7 @@ body.preload-active {
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
+    max-width: 1300px;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
     z-index: 1000;
@@ -1280,6 +1281,14 @@ body.preload-active {
     position: relative;
     padding-bottom: 1rem;
     z-index: 2;
+}
+
+.footer-logo img {
+    height: 4rem;
+}
+
+.footer-logo {
+    position: relative;
 }
 
 .footer-nav-links {
