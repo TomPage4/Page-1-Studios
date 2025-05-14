@@ -327,7 +327,7 @@ function resizeCanvasToSection() {
 
 function drawMatrix() {
     if (frame % frameDelay === 0) {
-        ctx.fillStyle = 'rgba(4, 20, 22, 0.1)';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = '#FF2692';
         ctx.font = `${fontSize}px ${fontFamily}`;

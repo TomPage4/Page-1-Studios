@@ -11,7 +11,8 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     line-height: 1;
-    background-color: #041416;
+    /* background-color: #041416; */
+    background-color: black;
 }
 
 html, body {
@@ -1050,7 +1051,7 @@ body.preload-active {
 
 .contact-input {
     max-width: 80%;
-    background-color: #15292c;
+    background-color: #1a1a1a;
     font-size: 1.2rem;
     border: 2px solid #ff2692;
     padding: 0.5rem;
@@ -1074,7 +1075,7 @@ body.preload-active {
     color: #041416;
     font-size: 1.3rem;
     border: 2px solid #DEDBD2;
-    background-image: linear-gradient(to right, #041416 50%, #DEDBD2 50%);
+    background-image: linear-gradient(to right, #1a1a1a 50%, #DEDBD2 50%);
 }
 
 #contact-submit-button:hover {
@@ -1227,11 +1228,11 @@ body.preload-active {
 }
 
 #enter-repository-button {
-    color: #041416;
+    color: black;
     padding: 0.5rem 1.25rem;
     font-size: clamp(1.6rem, 3vw, 2.6rem);
     border: 2px solid red;
-    background-image: linear-gradient(to right, #041416 50%, red 50%);
+    background-image: linear-gradient(to right, black 50%, red 50%);
     transition: color 0.3s ease;
 }
 
@@ -1241,7 +1242,7 @@ body.preload-active {
 
 @media (hover: none) and (pointer: coarse) {
     #enter-repository-button:hover {
-        color: #041416;
+        color: black;
     }
 }
 
