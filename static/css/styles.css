@@ -528,6 +528,7 @@ body.preload-active {
 .about {
     position: relative;
     min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     z-index: 2;
     width: 100%;
@@ -588,6 +589,12 @@ body.preload-active {
 
 #about-text-2 {
     padding-top: clamp(1rem, 4vw, 3rem);
+}
+
+@media (max-width: 1350px) {
+    .about {
+        max-height: none;
+    }
 }
 
 @media (max-width: 1000px) {
