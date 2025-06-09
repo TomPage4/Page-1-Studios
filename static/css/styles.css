@@ -699,6 +699,7 @@ body.preload-active {
         box-shadow 0.4s ease;
     cursor: pointer;
     z-index: 1;
+    border: 2px solid #ff2692;
 }
 
 .work-card::before {
@@ -718,6 +719,7 @@ body.preload-active {
 .work-card:hover {
     transform: translateY(-6%);
     z-index: 2;
+    box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.5);
 }
   
 .work-content {
