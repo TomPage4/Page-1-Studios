@@ -338,58 +338,101 @@ body.preload-active {
     width: 100%;
     height: 100vh;
     align-items: center;
+    justify-content: center;
     z-index: 1;
-    overflow: hidden;
+    background-color: rgb(12, 12, 12);
 }
 
-.intro-video-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+.intro-container {
+    position: relative;
+    width: 80%;
+    height: 75vh;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 3rem;
     overflow: hidden;
-    z-index: -2;
-    pointer-events: none;
+    border: 2px solid #ff2692;
+    box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.5);
 }
 
-.intro-background-video {
+.intro-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.intro-portrait {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
+    object-position: right;
 }
 
-
-.intro-background-overlay {
+.intro-gradient {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: -1;
+    background: radial-gradient(
+        circle at 80% 50%,
+        transparent 0%,
+        transparent 25%,
+        rgba(0, 0, 0, 0.8) 50%,
+        rgb(0, 0, 0) 88%
+    );
 }
 
-.intro-content-container {
-    padding-left: 10%;
-    padding-right: 25%;
+.intro-text-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+    z-index: 2;
 }
 
 .intro-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.2rem;
+    width: 100%;
+}
+
+#intro-line-1 {
+    font-weight: 800;
+    font-size: clamp(3rem, 4vw, 6rem);
+    line-height: 1;
+    margin: 0;
+}
+
+.intro-divider {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border: none;
+    margin: 0;
+    opacity: 0.8;
+}
+
+#intro-line-2 {
+    font-weight: 300;
     font-size: clamp(1.5rem, 3.2vw, 3rem);
-    line-height: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1.4;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .intro-text-content a {
     text-decoration: none;
     transition: color 0.5s ease;
     font-weight: 100;
-}
-
-.intro-text-content a:hover {
-    color: #ff2692;
 }
 
 .typewriter-cursor::after {
@@ -404,18 +447,18 @@ body.preload-active {
 }
 
 .intro-social-links {
-    display: flex;
     position: absolute;
-    right: 0;
-    padding: 0 5%;
-    gap: 2rem;
-    height: 100%;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 2rem;
+    z-index: 3;
 }
 
 .intro-social-icon {
-    width: clamp(2.5rem, 5vw, 4rem);
+    width: clamp(3rem, 4.5vw, 4rem);
     transition: transform 0.3s ease;
 }
 
@@ -423,6 +466,94 @@ body.preload-active {
     cursor: pointer;
     transform: scale(0.93);
 }
+
+.intro-logo {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 3;
+    padding-left: 2%;
+    padding-bottom: 2%;
+}
+
+.intro-small-logo {
+    width: clamp(3rem, 5vw, 5rem);
+    height: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.intro-small-logo:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .intro-container {
+        width: 85%;
+        height: 65vh;
+        background-color: rgb(0, 0, 0);
+    }
+
+    .intro-image-container {
+        display: none;
+    }
+
+    .intro-text-container {
+        width: 100%;
+        padding: 0 8%;
+    }
+
+    .intro-text-content {
+        gap: 2rem;
+    }
+
+    #intro-line-1 {
+        font-size: clamp(3.5rem, 6vw, 5rem);
+    }
+
+    .intro-social-links {
+        position: absolute;
+        left: 7.5%;
+        bottom: 2rem;
+        top: auto;
+        transform: none;
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    .intro-social-icon {
+        width: clamp(2.5rem, 5vw, 3rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .intro-container {
+        height: 60vh;
+    }
+
+    #intro-line-1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+    }
+
+    #intro-line-2 {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .intro-logo {
+        padding: 0;
+    }
+
+    .intro-small-logo {
+        width: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .intro-social-icon {
+        width: clamp(2rem, 9vw, 2.5rem);
+    }
+}
+
+
 
 
 

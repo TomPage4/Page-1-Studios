@@ -17,22 +17,19 @@ document.addEventListener('scroll', () => {
 /*----------------------------------------------
   TYPEWRITER EFFECT ON INTRO
 ----------------------------------------------*/
-const line1Text = "Hello, my name is ";
-const nameText = "Tom Page";
+const line1Text = "WEB-DEVELOPER";
 const secondLinePhrases = [
-    "I am a full stack web developer.",
-    "I turn your ideas into code.",
-    "I care about performance and design.",
-    "I help you launch with confidence.",
-    "I build websites that are fast, secure, and user-friendly."
+    "CRAFTING DIGITAL EXPERIENCES",
+    "BUILDING WITH PURPOSE",
+    "DESIGNING FOR IMPACT",
+    "CODE WITH INTENTION",
+    "CREATING MEMORABLE MOMENTS"
 ];
 
 const line1El = document.getElementById("intro-line-1");
 const line2El = document.getElementById("intro-line-2");
 
 let line1Index = 0;
-let nameIndex = 0;
-let typingName = false;
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -43,30 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function typeLine1() {
-    if (!typingName) {
-        if (line1Index < line1Text.length) {
-            line1El.textContent += line1Text.charAt(line1Index);
-            line1Index++;
-            setTimeout(typeLine1, 70);
-        } else {
-            typingName = true;
-            const a = document.createElement("a");
-            a.href = "#about";
-            a.id = "name-link";
-            line1El.appendChild(a);
-            setTimeout(typeLine1, 100);
-        }
+    if (line1Index < line1Text.length) {
+        line1El.textContent += line1Text.charAt(line1Index);
+        line1Index++;
+        setTimeout(typeLine1, 70);
     } else {
-        const nameLink = document.getElementById("name-link");
-        if (nameIndex < nameText.length) {
-            nameLink.textContent += nameText.charAt(nameIndex);
-            nameIndex++;
-            setTimeout(typeLine1, 70);
-        } else {
-            line1El.classList.remove("typewriter-cursor");
-            line2El.classList.add("typewriter-cursor");
-            setTimeout(typeSecondLine, 800);
-        }
+        line1El.classList.remove("typewriter-cursor");
+        line2El.classList.add("typewriter-cursor");
+        setTimeout(typeSecondLine, 800);
     }
 }
 
@@ -77,9 +58,21 @@ function typeSecondLine() {
     } else {
         charIndex++;
     }
-    line2El.textContent = currentPhrase.substring(0, charIndex);
+    
+    // Add line breaks when text reaches certain length
+    let displayText = currentPhrase.substring(0, charIndex);
+    if (!isDeleting && displayText.length > 20) {
+        // Find the last space before the 20th character
+        const lastSpace = displayText.lastIndexOf(' ', 20);
+        if (lastSpace !== -1) {
+            displayText = displayText.substring(0, lastSpace) + '\n' + displayText.substring(lastSpace + 1);
+        }
+    }
+    
+    line2El.textContent = displayText;
+    
     if (!isDeleting && charIndex === currentPhrase.length) {
-        setTimeout(() => isDeleting = true, 800);
+        setTimeout(() => isDeleting = true, 1500); // Increased pause time
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % secondLinePhrases.length;
