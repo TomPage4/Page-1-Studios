@@ -707,6 +707,9 @@ body.preload-active:not(.legal-page-active) {
     cursor: pointer;
     z-index: 1;
     border: 2px solid #ff2692;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .work-card::before {
@@ -826,6 +829,11 @@ body.preload-active:not(.legal-page-active) {
     }
 }
 
+.work-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 
 
@@ -881,21 +889,26 @@ body.preload-active:not(.legal-page-active) {
     height: 100%;
     box-sizing: border-box;
     padding-bottom: 4rem;
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .solution-card-1 {
     grid-column: 1;
     grid-row: 1;
+    transform: translateX(-50px);
 }
 
 .solution-card-2 {
     grid-column: 2;
     grid-row: 1;
+    transform: translateX(50px);
 }
 
 .solution-card-3 {
     grid-column: 1 / span 2;
     grid-row: 2;
+    transform: translateY(50px);
 }
 
 .solution-card h3 {
@@ -1018,7 +1031,10 @@ body.preload-active:not(.legal-page-active) {
     }
 }  
 
-  
+.solution-card.animate-in {
+    opacity: 1;
+    transform: translate(0);
+}
 
 
 
@@ -1046,6 +1062,14 @@ body.preload-active:not(.legal-page-active) {
     flex-direction: column;
     height: 100vh;
     padding: 0 5%;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.contact-header-container.animate-in {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 #contact-header {
@@ -1069,6 +1093,14 @@ body.preload-active:not(.legal-page-active) {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+#contact-form.animate-in {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .contact label {

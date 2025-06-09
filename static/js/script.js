@@ -403,3 +403,75 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+/*----------------------------------------------
+  SCROLL ANIMATIONS
+----------------------------------------------*/
+document.addEventListener("DOMContentLoaded", () => {
+    // Create intersection observer for work and solution cards
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // For work cards, add animation with delay based on index
+                if (entry.target.classList.contains('work-card')) {
+                    const cards = document.querySelectorAll('.work-card');
+                    const index = Array.from(cards).indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, index * 200); // 200ms delay between each card
+                }
+                // For solution cards, animate them with different delays
+                else if (entry.target.classList.contains('solution-card')) {
+                    const delay = entry.target.classList.contains('solution-card-1') ? 0 :
+                                entry.target.classList.contains('solution-card-2') ? 200 :
+                                entry.target.classList.contains('solution-card-3') ? 100 : 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, delay);
+                }
+            }
+        });
+    }, {
+        threshold: 0.1, // Lower threshold for cards
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Create separate observer for contact section with higher threshold
+    const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.id === 'contact-form' || 
+                    entry.target.classList.contains('contact-header-container')) {
+                    console.log('Contact element intersecting:', entry.target.id || 'header-container');
+                    entry.target.classList.add('animate-in');
+                }
+            }
+        });
+    }, {
+        threshold: 0.3, // Higher threshold for contact section
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe work cards
+    document.querySelectorAll('.work-card').forEach(card => {
+        observer.observe(card);
+    });
+
+    // Observe solution cards
+    document.querySelectorAll('.solution-card').forEach(card => {
+        observer.observe(card);
+    });
+
+    // Observe contact section elements with the contact-specific observer
+    const contactHeader = document.querySelector('.contact-header-container');
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactHeader) {
+        console.log('Observing contact header');
+        contactObserver.observe(contactHeader);
+    }
+    if (contactForm) {
+        console.log('Observing contact form');
+        contactObserver.observe(contactForm);
+    }
+});
