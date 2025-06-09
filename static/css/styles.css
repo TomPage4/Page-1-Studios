@@ -425,7 +425,7 @@ body.preload-active:not(.legal-page-active) {
 
 #intro-line-2 {
     font-weight: 300;
-    font-size: clamp(1.5rem, 3.2vw, 3rem);
+    font-size: clamp(1.4rem, 3.2vw, 3rem);
     line-height: 1.4;
     margin: 0;
     white-space: pre-wrap;
@@ -476,8 +476,6 @@ body.preload-active:not(.legal-page-active) {
     bottom: 2rem;
     left: 2rem;
     z-index: 3;
-    padding-left: 2%;
-    padding-bottom: 2%;
 }
 
 .intro-small-logo {
@@ -541,10 +539,6 @@ body.preload-active:not(.legal-page-active) {
 
     #intro-line-2 {
         font-size: clamp(1.2rem, 3vw, 2rem);
-    }
-
-    .intro-logo {
-        padding: 0;
     }
 
     .intro-small-logo {
