@@ -19,11 +19,10 @@ document.addEventListener('scroll', () => {
 ----------------------------------------------*/
 const line1Text = "WEB-DEVELOPER";
 const secondLinePhrases = [
-    "CRAFTING DIGITAL EXPERIENCES",
-    "BUILDING WITH PURPOSE",
-    "DESIGNING FOR IMPACT",
-    "CODE WITH INTENTION",
-    "CREATING MEMORABLE MOMENTS"
+    "ELEVATING USER EXPERIENCES",
+    "BUILDING WITH CLARITY & PURPOSE",
+    "CREATING WITH CARE",
+    "TURNING VISION INTO CODE",
 ];
 
 const line1El = document.getElementById("intro-line-1");
