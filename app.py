@@ -136,4 +136,5 @@ def contact():
         return jsonify({"success": False, "error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
+    # app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
+    app.run(debug=True)

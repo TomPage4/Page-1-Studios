@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #DEDBD2;
+    color: #ffffff;
     scroll-behavior: smooth;
 }
   
@@ -11,7 +11,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     line-height: 1;
-    background-color: black;
+    background-color: rgb(12, 12, 12);
 }
 
 html, body {
@@ -29,7 +29,7 @@ html, body {
 .section-divider {
     border: none;
     height: 1px;
-    background-color: #DEDBD2;
+    background-color: #ffffff;
 }
 
 
@@ -67,7 +67,7 @@ body.preload-active {
     align-items: center;
     justify-content: center;
     transition: opacity 1s ease-in-out;
-    background-color: black;
+    background-color: rgb(12, 12, 12);
 }
 
 #preloader-logo {
@@ -252,7 +252,7 @@ body.preload-active {
         display: block;
         height: 3px;
         width: 100%;
-        background-color: #DEDBD2;
+        background-color: #ffffff;
     }
 
     .overlay {
@@ -869,7 +869,7 @@ body.preload-active {
     border-radius: 1rem;
     padding: 2rem;
     text-decoration: none;
-    border: 0.2rem solid #DEDBD2;
+    border: 0.2rem solid #ffffff;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -1094,12 +1094,12 @@ body.preload-active {
 #contact-submit-button {
     color: #041416;
     font-size: 1.3rem;
-    border: 2px solid #DEDBD2;
-    background-image: linear-gradient(to right, #1a1a1a 50%, #DEDBD2 50%);
+    border: 2px solid #ffffff;
+    background-image: linear-gradient(to right, #121212 50%, #ffffff 50%);
 }
 
 #contact-submit-button:hover {
-    color: #DEDBD2;
+    color: #ffffff;
 }
 
 #message {
@@ -1132,7 +1132,7 @@ body.preload-active {
 
 #contact-submit-button.submitting {
     background-position: left;
-    color: #DEDBD2;
+    color: #ffffff;
 }
 
 @media (max-width: 1000px) {
@@ -1405,7 +1405,7 @@ body.preload-active {
 
 @media (hover: none) and (pointer: coarse) {
     .footer-nav-links a:hover {
-        color: #DEDBD2;
+        color: #ffffff;
     }
 
     .footer-social-icon:hover {
@@ -1414,6 +1414,6 @@ body.preload-active {
 
     .affiliate-left a:hover,
     .affiliate-right a:hover {
-        color: #DEDBD2;
+        color: #ffffff;
     }
 }
