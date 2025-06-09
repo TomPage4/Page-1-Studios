@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO -->
+    <meta name="title" content="{{ page_title or 'Page 1 Studios | Web Design & Development' }}"/>
+    <meta name="description" content="{{ page_description or 'UK-based web design studio building tailored websites for small businesses and freelancers. Page 1 Studios helps you stand out with a strong digital presence.' }}"/>
+    <meta name="keywords" content="web design Cardiff, freelance web developer, Page 1 Studios, business websites UK, personal websites, custom web development, software engineering student, Tom Page">
+    <meta name="author" content="Tom Page">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page_url or 'https://www.page1studios.com/' }}"/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ page_url or 'https://www.page1studios.com/' }}">
+    <meta property="og:title" content="{{ og_title or page_title or 'Page 1 Studios | Web Design & Development' }}">
+    <meta property="og:description" content="{{ og_description or page_description or 'UK-based web design studio building tailored websites for small businesses and freelancers. Page 1 Studios helps you stand out with a strong digital presence.' }}">
+    <meta property="og:image" content="https://www.page1studios.com/static/images/social-logo.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:url" content="{{ page_url or 'https://www.page1studios.com/' }}">
+    <meta name="twitter:title" content="{{ twitter_title or page_title or 'Page 1 Studios | Web Design & Development' }}">
+    <meta name="twitter:description" content="{{ twitter_description or page_description or 'UK-based web design studio building tailored websites for small businesses and freelancers. Page 1 Studios helps you stand out with a strong digital presence.' }}">
+    <meta name="twitter:image" content="https://www.page1studios.com/static/images/social-logo.png"/>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/static/images/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="/static/images/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="/static/images/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/static/images/favicon.ico"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-title" content="Page 1 Studios"/>
+    <!-- Safari Pinned Tab -->
+    <link rel="mask-icon" href="/static/images/favicon.ico" color="#000000"/>
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileImage" content="/static/images/favicon.ico"/>
+    <meta name="msapplication-TileColor" content="#000000"/>
+    <meta name="theme-color" content="#000000"/>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.page1studios.com/#organization",
+        "name": "Page 1 Studios",
+        "url": "https://www.page1studios.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.page1studios.com/static/images/logo.svg"
+        },
+        "description": "UK-based web design studio building tailored websites for small businesses and freelancers. Page 1 Studios helps you stand out with a strong digital presence.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "areaServed": "GB",
+            "availableLanguage": ["English"]
+        },
+        "sameAs": [
+            "https://www.instagram.com/page.1.studios/",
+            "https://www.linkedin.com/in/tom-page-/",
+            "https://github.com/TomPage4"
+        ]
+    }
+    </script>
+    {% if structured_data %}
+    <script type="application/ld+json">
+        {{ structured_data | tojson | safe }}
+    </script>
+    {% endif %}
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- Preload -->
+    <link rel="preload" as="image" href="/static/images/logo.svg" type="image/svg+xml">
+
+    <title>{% block title %}{{ page_title or 'Page 1 Studios | Web Design & Development' }}{% endblock %}</title>
+</head>
+<body class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% endif %}">
+    {% block content %}{% endblock %}
+    <script src="/static/js/script.js"></script>
+</body>
+</html> 

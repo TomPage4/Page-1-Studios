@@ -1,41 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" class="preload-active">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tab name and logo -->
-    <title>Page 1 Studios | Web Design & Development</title>
-    <link rel="icon" href="/static/images/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="/static/images/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)">
-    <link rel="icon" href="/static/images/favicon.ico" sizes="any">
-    <!-- CSS -->
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-    <!-- Preload -->
-    <link rel="preload" as="image" href="/static/images/logo.svg" type="image/svg+xml">
-    <!-- SEO -->
-    <meta name="description" content="UK-based web design studio building tailored websites for small businesses and freelancers. Page 1 Studios helps you stand out with a strong digital presence.">
-    <meta name="keywords" content="web design Cardiff, freelance web developer, Page 1 Studios, business websites UK, personal websites, custom web development, software engineering student, Tom Page">
-    <meta name="author" content="Tom Page">
-    <link rel="canonical" href="https://www.page1studios.com/">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.page1studios.com/">
-    <meta property="og:title" content="Page 1 Studios | Web Design & Development">
-    <meta property="og:description" content="Page 1 Studios is a UK-based web design studio creating fast, responsive websites for businesses and individuals around the world. Start building your online presence today.">
-    <meta property="og:image" content="/static/images/social-logo.png">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.page1studios.com/">
-    <meta name="twitter:title" content="Page 1 Studios | Web Design & Development">
-    <meta name="twitter:description" content="Page 1 Studios is a UK-based web design studio creating fast, responsive websites for businesses and individuals around the world. Start building your online presence today.">
-    <meta name="twitter:image" content="https://www.page1studios.com/static/images/social-logo.png">
-</head>
-<body class="preload-active">
+{% extends "base.html" %}
 
+{% set page_title = "Page 1 Studios | Web Design & Development" %}
+{% set page_description = "UK-based web design studio building tailored websites for small businesses and freelancers. Page 1 Studios helps you stand out with a strong digital presence." %}
+{% set page_url = url_for('home', _external=True) %}
+
+{% set structured_data = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": page_url ~ "#website",
+    "url": page_url,
+    "name": "Page 1 Studios",
+    "description": page_description,
+    "publisher": {
+        "@type": "Organization",
+        "name": "Page 1 Studios",
+        "url": "https://www.page1studios.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.page1studios.com/static/images/logo.svg"
+        }
+    }
+} %}
+
+{% block content %}
     <div id="preloader">
         <div id="preloader-logo-container">
             <img src="/static/images/logo.svg" alt="Page 1 Studios logo" id="preloader-logo" />
@@ -302,6 +289,4 @@
             </div>
         </section>
     </footer>
-    <script src="/static/js/script.js"></script>
-</body>
-</html>
+{% endblock %}

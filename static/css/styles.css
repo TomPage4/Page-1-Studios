@@ -12,16 +12,23 @@ body {
     font-weight: 600;
     line-height: 1;
     background-color: rgb(12, 12, 12);
+    position: relative;
 }
 
 html, body {
     overflow-x: hidden;
+    height: auto;
+    min-height: 100%;
 }
 
-
-
-
-
+/* Only apply preload-active to main page */
+html.preload-active:not(.legal-page-active),
+body.preload-active:not(.legal-page-active) {
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+}
 
 /*----------------------------------------------
   SECTION DIVIDER
@@ -39,14 +46,6 @@ html, body {
 /*----------------------------------------------
   PRELOADER
 ----------------------------------------------*/
-html.preload-active,
-body.preload-active {
-    overflow: hidden;
-    height: 100%;
-    position: fixed;
-    width: 100%;
-}
-
 #preloader {
     position: fixed;
     top: 0;
@@ -1514,4 +1513,70 @@ body.preload-active {
     .footer-social-icon:hover {
         filter: none;
     }
+}
+
+/*----------------------------------------------
+  LEGAL PAGES
+----------------------------------------------*/
+.legal-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+    height: auto;
+}
+
+.legal-page h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: #ff2692;
+}
+
+.legal-page h2 {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    margin: 2.5rem 0 1rem;
+    color: #ffffff;
+}
+
+.legal-page p {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #92918c;
+}
+
+.legal-page a {
+    color: #ff2692;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-page a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.legal-page strong {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .legal-page {
+        padding: 7rem 1.5rem 3rem;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .legal-page a:hover {
+        color: #ff2692;
+        text-decoration: none;
+    }
+}
+
+/* Add styles for legal page body */
+body.legal-page-active {
+    height: auto;
+    overflow-y: auto;
+    position: relative;
 }
