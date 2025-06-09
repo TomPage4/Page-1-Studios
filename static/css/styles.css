@@ -524,6 +524,12 @@ body.preload-active:not(.legal-page-active) {
     }
 }
 
+@media (max-height: 850px) {
+    .intro-container {
+        height: 50vh;
+    }
+}
+
 @media (max-width: 600px) {
     .intro-container {
         height: 60vh;
@@ -648,134 +654,6 @@ body.preload-active:not(.legal-page-active) {
         background-position: right bottom;
     }
 }
-
-
-
-
-
-
-
-
-
-/*----------------------------------------------
-  ABOUT
-----------------------------------------------*/
-.about {
-    position: relative;
-    min-height: 100vh;
-    max-height: 100vh;
-    display: flex;
-    z-index: 2;
-    width: 100%;
-}
-
-.about-container {
-    display: flex;
-    width: 100%;
-}
-
-.slideshow-wrapper {
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.slideshow-track {
-    display: flex;
-    height: 100%;
-    transition: transform 1s ease-in-out;
-}
-
-.slideshow-track img {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.5s ease;
-    display: block;
-}
-
-.slideshow-track img:hover {
-    filter: grayscale(0%);
-}
-
-.about-content {
-    width: 50%;
-    padding: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: clamp(1.3rem, 1.7vw, 1.4rem);
-}
-
-#about-header {
-    align-self: flex-start;
-}
-
-.about-text {
-    line-height: 1.6;
-}
-
-#about-text-1 {
-    padding-top: 2rem;
-}
-
-#about-text-2 {
-    padding-top: clamp(1rem, 4vw, 3rem);
-}
-
-@media (max-width: 1350px) {
-    .about {
-        max-height: none;
-    }
-}
-
-@media (max-width: 1000px) {
-    .about-container {
-        flex-direction: column;
-    }
-
-    .slideshow-wrapper,
-    .about-content {
-        width: 100%;
-    }
-
-    .about-content {
-        padding: 1.7rem;
-        font-size: clamp(0.9rem, 2.6vw, 1.2rem);
-    }
-
-    .slideshow-track img {
-        flex: 0 0 100%;
-    }
-}
-
-@media (max-width: 600px) {
-    .about-content {
-        font-size: 1rem;
-    }
-
-    #about-header {
-        font-size: 1.2rem;
-    }
-
-    .about-text {
-        line-height: 1.5;
-    }
-}
-
-@media (hover: none) and (pointer: coarse) {
-    .slideshow-track img {
-        filter: grayscale(0%) !important;
-    }
-
-    .slideshow-track img:hover {
-        filter: grayscale(0%) !important;
-    }
-}
-
 
 
 
