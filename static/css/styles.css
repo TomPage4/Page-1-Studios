@@ -780,7 +780,7 @@ body.preload-active {
 
     .work-card {
         height: 32vw;
-        min-height: 12rem;
+        min-height: 34rem;
     }
 
     .work-card:hover {
@@ -793,6 +793,18 @@ body.preload-active {
 
     .work-content span {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .work-card {
+        min-height: 24rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .work-card {
+        min-height: 18rem;
     }
 }
 
