@@ -701,15 +701,12 @@ body.preload-active:not(.legal-page-active) {
     background-position: center;
     box-shadow: 1px 2px 15px rgba(0,0,0,0.5);
     overflow: hidden;
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
     cursor: pointer;
     z-index: 1;
     border: 2px solid #ff2692;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.4s ease;
 }
 
 .work-card::before {
@@ -727,7 +724,7 @@ body.preload-active:not(.legal-page-active) {
 }
 
 .work-card:hover {
-    transform: translateY(-6%);
+    transform: translateY(-5%);
     z-index: 2;
     box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.5);
 }
@@ -832,6 +829,10 @@ body.preload-active:not(.legal-page-active) {
 .work-card.animate-in {
     opacity: 1;
     transform: translateY(0);
+}
+
+.work-card.animate-in:hover {
+    transform: translateY(-6%);
 }
 
 
