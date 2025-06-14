@@ -115,8 +115,8 @@ body.preload-active:not(.legal-page-active) {
 
 .site-header.scrolled {
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
