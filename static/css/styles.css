@@ -1132,7 +1132,7 @@ body.preload-active:not(.legal-page-active) {
 }
 
 #contact-submit-button {
-    color: #041416;
+    color: #121212;
     font-size: 1.3rem;
     border: 2px solid #ffffff;
     background-image: linear-gradient(to right, #121212 50%, #ffffff 50%);
@@ -1217,6 +1217,12 @@ body.preload-active:not(.legal-page-active) {
 
     #contact-submit-button {
         font-size: clamp(1.2rem, 3vw, 1.6rem);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    #contact-submit-button:hover {
+        color: #121212;
     }
 }
   
