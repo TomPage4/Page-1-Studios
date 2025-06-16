@@ -86,10 +86,10 @@ function typeSecondLine() {
 /*----------------------------------------------
   SEND USER TO TOP OF PAGE ON REFRESH
 ----------------------------------------------*/
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-    window.history.scrollRestoration = "manual";
-};
+// window.onbeforeunload = function () {
+//     window.scrollTo(0, 0);
+//     window.history.scrollRestoration = "manual";
+// };
 
 
 
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        const fields = ['name', 'email', 'message'];
+        const fields = ['name', 'email', 'referral_source', 'message'];
         let isValid = true;
 
         // Clear previous errors
@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const name = document.getElementById('name');
         const email = document.getElementById('email');
+        const referralSource = document.getElementById('referral_source');
         const message = document.getElementById('message');
         const honeypot = document.getElementById('referral_code');
 
@@ -143,6 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         } else if (!emailPattern.test(email.value)) {
             showError(email, 'Please enter a valid email address');
+            isValid = false;
+        }
+
+        if (referralSource.value === '') {
+            showError(referralSource, 'Please select how you heard about us');
             isValid = false;
         }
 
@@ -279,38 +285,62 @@ drawMatrix();
   PRELOADER PAGE ANIMATION
 ----------------------------------------------*/
 document.addEventListener('DOMContentLoaded', () => {
-    const NUM_BLOCKS = 6;
+    // Check if we're on the home page
+    if (window.location.pathname === '/') {
+        // Check if we came from a job page
+        const fromJobPage = sessionStorage.getItem('fromJobPage');
+        
+        if (!fromJobPage) {
+            // This is a fresh load/refresh of the home page
+            const NUM_BLOCKS = 6;
+            const preloaderContainer = document.getElementById('preloader-blocks-container');
+            const preloaderLogo = document.getElementById('preloader-logo-container');
 
-    const preloaderContainer = document.getElementById('preloader-blocks-container');
-    const preloaderLogo = document.getElementById('preloader-logo-container');
-    const mainContent = document.getElementById('preloader-main-content');
+            for (let i = 0; i < NUM_BLOCKS; i++) {
+                const block = document.createElement('div');
+                block.classList.add('preloader-block-bar');
+                block.style.width = `${100 / NUM_BLOCKS}%`;
+                block.style.left = `${(100 / NUM_BLOCKS) * i}%`;
+                preloaderContainer.appendChild(block);
+            }
 
-    for (let i = 0; i < NUM_BLOCKS; i++) {
-        const block = document.createElement('div');
-        block.classList.add('preloader-block-bar');
-        block.style.width = `${100 / NUM_BLOCKS}%`;
-        block.style.left = `${(100 / NUM_BLOCKS) * i}%`;
-        preloaderContainer.appendChild(block);
-    }
+            const preloaderBlocks = document.querySelectorAll('.preloader-block-bar');
 
-    const preloaderBlocks = document.querySelectorAll('.preloader-block-bar');
-
-    setTimeout(() => {
-        preloaderLogo.style.opacity = 0;
-
-        preloaderBlocks.forEach((block, index) => {
             setTimeout(() => {
-                block.classList.add('preloader-block-slide-up');
-            }, index * 150);
-        });
+                preloaderLogo.style.opacity = 0;
 
-        const totalAnimationTime = NUM_BLOCKS * 200 + 800;
-        setTimeout(() => {
+                preloaderBlocks.forEach((block, index) => {
+                    setTimeout(() => {
+                        block.classList.add('preloader-block-slide-up');
+                    }, index * 150);
+                });
+
+                const totalAnimationTime = NUM_BLOCKS * 200 + 800;
+                setTimeout(() => {
+                    document.getElementById('preloader').style.display = 'none';
+                    document.documentElement.classList.remove('preload-active');
+                    document.body.classList.remove('preload-active');
+                }, totalAnimationTime - 800);
+            }, 1000);
+        } else {
+            // We came from a job page, remove preloader immediately
             document.getElementById('preloader').style.display = 'none';
             document.documentElement.classList.remove('preload-active');
             document.body.classList.remove('preload-active');
-        }, totalAnimationTime - 800);
-    }, 1000);
+            // Clear the flag
+            sessionStorage.removeItem('fromJobPage');
+        }
+    }
+});
+
+/*----------------------------------------------
+  HANDLE NAVIGATION BETWEEN PAGES
+----------------------------------------------*/
+document.addEventListener('DOMContentLoaded', () => {
+    // If we're on a job page, set the flag for when user goes back to home
+    if (window.location.pathname !== '/') {
+        sessionStorage.setItem('fromJobPage', 'true');
+    }
 });
 
 
@@ -387,23 +417,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-/*----------------------------------------------
-  FORCE VIDEO PLAY
-----------------------------------------------*/
-document.addEventListener("DOMContentLoaded", () => {
-    const video = document.querySelector('.intro-video-background');
-  
-    if (video) {
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible' && video.paused) {
-                video.play();
-            }
-        });
-    }
-});
-
 /*----------------------------------------------
   SCROLL ANIMATIONS
 ----------------------------------------------*/
@@ -428,6 +441,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     setTimeout(() => {
                         entry.target.classList.add('animate-in');
                     }, delay);
+                }
+                // For strategy section elements
+                else if (entry.target.classList.contains('strategy-content') || 
+                         entry.target.classList.contains('strategy-image-container')) {
+                    entry.target.classList.add('animate-in');
                 }
             }
         });
@@ -462,16 +480,20 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(card);
     });
 
+    // Observe strategy section elements
+    const strategyContent = document.querySelector('.strategy-content');
+    const strategyImage = document.querySelector('.strategy-image-container');
+    if (strategyContent) observer.observe(strategyContent);
+    if (strategyImage) observer.observe(strategyImage);
+
     // Observe contact section elements with the contact-specific observer
     const contactHeader = document.querySelector('.contact-header-container');
     const contactForm = document.getElementById('contact-form');
     
     if (contactHeader) {
-        console.log('Observing contact header');
         contactObserver.observe(contactHeader);
     }
     if (contactForm) {
-        console.log('Observing contact form');
         contactObserver.observe(contactForm);
     }
 });

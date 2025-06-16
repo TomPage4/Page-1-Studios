@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory, redirect
+from flask import Flask, render_template, request, jsonify, send_from_directory, redirect, url_for
 from flask_mail import Mail, Message
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -20,6 +20,44 @@ with open('jobs.json') as f:
 @app.route('/')
 def home():
     return render_template('index.html', jobs=jobs)
+
+@app.route('/<job_id>')
+def job(job_id):
+    # Find the job with matching id
+    job = next((j for j in jobs if j['id'] == job_id), None)
+    if job is None:
+        return redirect(url_for('home'))
+    
+    # Set page metadata
+    page_title = f"Page 1 Studios | {job['title']}"
+    page_description = job['description']
+    page_url = url_for('job', job_id=job_id, _external=True)
+    
+    # Add structured data for the job
+    structured_data = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": f"{page_url}#webpage",
+        "url": page_url,
+        "name": page_title,
+        "description": page_description,
+        "publisher": {
+            "@type": "Organization",
+            "name": "Page 1 Studios",
+            "url": "https://www.page1studios.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.page1studios.com/static/images/logo.svg"
+            }
+        }
+    }
+    
+    return render_template('job.html', 
+                         job=job,
+                         page_title=page_title,
+                         page_description=page_description,
+                         page_url=page_url,
+                         structured_data=structured_data)
 
 @app.route('/privacy-policy')
 def privacy_policy():
@@ -93,9 +131,9 @@ def contact():
     if request.form.get('referral_code'):
         return jsonify({"success": False, "message": "Spam detected"}), 400
 
-
     name = bleach.clean(request.form.get('name', '').strip())
     email = bleach.clean(request.form.get('email', '').strip())
+    referral_source = bleach.clean(request.form.get('referral_source', '').strip())
     message = bleach.clean(request.form.get('message', '').strip())
 
     # Basic input validation
@@ -105,11 +143,23 @@ def contact():
     if not email or not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
         return jsonify({"success": False, "error": "Invalid email"}), 400
 
+    if not referral_source or referral_source not in ['search', 'social', 'word', 'referral', 'other']:
+        return jsonify({"success": False, "error": "Invalid referral source"}), 400
+
     if '\n' in email or '\r' in email or '\n' in name or '\r' in name:
         return jsonify({"success": False, "error": "Header injection attempt"}), 400
 
     if not message or len(message) > 1000:
         return jsonify({"success": False, "error": "Invalid message"}), 400
+
+    # Map referral source values to display text
+    referral_source_map = {
+        'search': 'Search engine',
+        'social': 'Social media',
+        'word': 'Word of mouth',
+        'referral': 'Referral',
+        'other': 'Other'
+    }
 
     msg = Message(
         subject=f"📨 New Contact Form Submission: {name}",
@@ -120,6 +170,7 @@ def contact():
             f"📥 You've received a new message from your website contact form:\n\n"
             f"🧑 Name: {name}\n"
             f"📧 Email: {email}\n"
+            f"🔍 Referral Source: {referral_source_map.get(referral_source, 'Unknown')}\n"
             f"🕒 Received: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
             f"💬 Message:\n"
             f"{'-' * 40}\n"

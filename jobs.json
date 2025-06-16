@@ -1,20 +1,50 @@
 [
     {
+        "id": "minusu",
         "title": "MINUSU",
         "description": "A creative studio specializing in brand identity, and product design.",
-        "image": "/static/images/minusu.jpeg",
-        "link": "https://www.minusu.studio"
+        "image": "/static/images/minusu.jpeg",	
+        "mockup": "/static/images/minusu-mockup.png",
+        "link": "https://www.minusu.studio",
+        "completion_date": "May 2025",
+        "website_url": "https://www.minusu.studio",
+        "stats": {
+            "traffic_increase": "261.4%+",
+            "clients_onboarded": "8+"
+        },
+        "initial_challenge": "Minusu, a talented graphic design studio, needed a digital presence that matched the quality of their creative work. Their previous website lacked both visual impact and functional flexibility, it was slow to load, difficult to update, and offered no content management system, which made showcasing new projects cumbersome. Navigation was clunky, and the overall user experience failed to reflect the studio's design sensibility. The challenge was to create a modern, high-performing website that not only highlighted Minusu's portfolio but also supported future growth through easy updates and strategic insights.",
+        "solution": "We delivered a streamlined, visually striking website that puts Minusu's work front and center. The design is minimalist by intent, allowing their portfolio to shine without distraction. The site is built for performance, fast load times, seamless transitions, and responsive layouts across devices. We implemented a custom content management system (CMS) tailored for creative workflows, enabling Minusu to easily manage and update their portfolio. A secure contact form improves client communication, while integrated analytics provide actionable data on user engagement. Since launching the site, our collaboration has evolved into a full-service partnership, offering clients a complete online presence package that blends standout web design with brand identity, social media strategy, and more."
     },
     {
+        "id": "coming-soon-1",
         "title": "COMING SOON",
         "description": "STAY TUNED",
         "image": "/static/images/coming-soon.png",
-        "link": "#"
+        "mockup": "/static/images/coming-soon.png",
+        "link": "#",
+        "completion_date": "Coming Soon",
+        "website_url": "#",
+        "stats": {
+            "traffic_increase": "TBA",
+            "clients_onboarded": "TBA"
+        },
+        "initial_challenge": "Coming soon...",
+        "solution": "Coming soon..."
     },
     {
+        "id": "coming-soon-2",
         "title": "COMING SOON",
         "description": "STAY TUNED",
         "image": "/static/images/coming-soon.png",
-        "link": "#"
+        "mockup": "/static/images/coming-soon.png",
+        "link": "#",
+        "completion_date": "Coming Soon",
+        "website_url": "#",
+        "stats": {
+            "traffic_increase": "TBA",
+            "clients_onboarded": "TBA"
+        },
+        "initial_challenge": "Coming soon...",
+        "solution": "Coming soon..."
     }
 ]

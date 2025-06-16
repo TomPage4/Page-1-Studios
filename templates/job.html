@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <section class="job-page">
+        <div class="job-container">
+            <!-- Back Button -->
+            <div class="job-back-button">
+                <a href="{{ url_for('home') }}" class="back-button">
+                    <span class="back-arrow">←</span>
+                    <span class="back-text">Back</span>
+                </a>
+            </div>
+
+            <!-- Top Section -->
+            <section class="job-header">
+                <div class="job-header-left">
+                    <h1 class="job-title">
+                        <a href="{{ job.website_url }}" target="_blank" rel="noopener noreferrer">{{ job.title }}</a>
+                    </h1>
+                    <p class="job-description">{{ job.description }}</p>
+                </div>
+                <div class="job-header-right">
+                    <div class="job-meta">
+                        <h2>Date</h2>
+                        <p>{{ job.completion_date }}</p>
+                    </div>
+                    <div class="job-meta">
+                        <h2>Website</h2>
+                        <p><a href="{{ job.website_url }}" target="_blank" rel="noopener noreferrer">{{ job.website_url }}</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Full Width Image -->
+            <section class="job-image">
+                <img src="{{ job.mockup }}" alt="{{ job.title }} website preview">
+            </section>
+
+            <!-- Stats Section -->
+            <section class="job-stats">
+                <div class="stat-box">
+                    <h2>Traffic Increase</h2>
+                    <p>{{ job.stats.traffic_increase }}</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Clients Onboarded</h2>
+                    <p>{{ job.stats.clients_onboarded }}</p>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Challenge & Solution Section -->
+            <section class="job-content">
+                <div class="content-section">
+                    <h2>Initial Challenge</h2>
+                    <p>{{ job.initial_challenge }}</p>
+                </div>
+                <div class="content-section">
+                    <h2>Solution</h2>
+                    <p>{{ job.solution }}</p>
+                </div>
+            </section>
+        </div>
+    </section>
+</main>
+{% endblock %}

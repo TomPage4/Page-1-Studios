@@ -30,31 +30,6 @@
         <div id="preloader-blocks-container"></div>
     </div>
 
-    <header class="site-header">
-        <div class="header-container">
-            <div class="logo">
-                <a href="#intro" aria-label="Scroll to intro section">
-                    <img src="/static/images/logo.svg" alt="Page 1 Studios logo" />
-                </a>
-            </div>
-            <div class="header-burger" id="header-burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#work" aria-label="Scroll to work section">WORK</a></li>
-                    <li><a href="#solutions" aria-label="Scroll to solutions section">SOLUTIONS</a></li>
-                    <li><a href="#contact" aria-label="Scroll to contact section">CONTACT</a></li>
-                    <li><a href="#source-code" aria-label="Scroll to source code section">CODE</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="overlay" id="overlay"></div>
-
     <main>
         <section class="intro" id="intro">
             <div class="intro-container">
@@ -95,7 +70,7 @@
             </div>
             <div class="work-card-container">
                 {% for job in jobs %}
-                <a href="{{ job.link }}" target="_blank">
+                <a href="{{ url_for('job', job_id=job.id) }}">
                     <div class="work-card" style="background-image: url('{{ job.image }}');">
                         <div class="work-content">
                             <h2>{{ job.title }}</h2>
@@ -104,6 +79,24 @@
                     </div>
                 </a>
                 {% endfor %}
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section class="strategy" id="strategy">
+            <div class="strategy-container">
+                <div class="strategy-content">
+                    <h2 class="animated-header" id="strategy-header">STRATEGY</h2>
+                    <p class="strategy-text">
+                        I'm Tom Page, a web developer who specialises in working with <strong>health, wellness, and fitness professionals</strong> to help them grow their client base and streamline their online presence.
+                        With a personal passion for fitness and a deep understanding of the industry, I know how to build websites that don't just look good, they convert.
+                        At the heart of my approach is the <strong>FitClient Funnel</strong>, a proven system that transforms casual site visitors into paying clients through smart design, automated booking, and lead capture.
+                        It's not just a website, it's a growth tool built to save you time, boost your credibility, and generate real results.</p>
+                </div>
+                <div class="strategy-image-container">
+                    <img src="/static/images/strategy-portrait.jpg" alt="Strategy visualization" class="strategy-image">
+                </div>
             </div>
         </section>
 
@@ -118,7 +111,7 @@
                     <a href="#contact" class="solution-card solution-card-1">
                         <div class="glow"></div>
                         <h3>DIGITAL MARKETPLACE (SNIPCART)</h3>
-                        <h4>£750*</h4>
+                        <h4>£1050*</h4>
                         <p>A clean, fully custom-designed website tailored to your brand — equipped with secure e-commerce functionality using Snipcart.</p>
                         <p>What's included:</p>
                         <ul>
@@ -141,7 +134,7 @@
                     <a href="#contact" class="solution-card solution-card-2">
                         <div class="glow"></div>
                         <h3>CORE WEB SOLUTION</h3>
-                        <h4>£450*</h4>
+                        <h4>£650*</h4>
                         <p>A polished, purpose-built website designed to elevate your business and give your audience the experience they expect from a modern brand.</p>
                         <p>What's included:</p>
                         <ul>
@@ -162,7 +155,7 @@
                     <a href="#contact" class="solution-card solution-card-3">
                         <div class="glow"></div>
                         <h3>COMPLETE ONLINE PRESENCE</h3>
-                        <h4>£1400*</h4>
+                        <h4>£1800*</h4>
                         <p>A complete visual identity solution — combining a bespoke website with professionally designed branding, logo, and graphics delivered in collaboration with my trusted design partner at <strong>Minusu</strong>.</p>
                         <p>What's included:</p>
                         <ul>
@@ -193,15 +186,26 @@
                 <p class="contact-text" id="contact-text-2">GET IN TOUCH!</p>
             </div>
             <form id="contact-form">
-                <label for="name">Name</label>
+                <label for="name">Name *</label>
                 <input name="name" class="contact-input" id="name" autocomplete="off">
                 <p class="error-message" id="name-error"></p>
 
-                <label for="email">Email</label>
+                <label for="email">Email *</label>
                 <input name="email" class="contact-input" id="email" autocomplete="off">
                 <p class="error-message" id="email-error"></p>
 
-                <label for="message">Message</label>
+                <label for="referral_source">How did you hear about us? *</label>
+                <select name="referral_source" class="contact-input" id="referral_source">
+                    <option value="">Select an option</option>
+                    <option value="search">Search engine (e.g. google, bing, etc.)</option>
+                    <option value="social">Social media</option>
+                    <option value="word">Word of mouth</option>
+                    <option value="referral">Referral</option>
+                    <option value="other">Other</option>
+                </select>
+                <p class="error-message" id="referral_source-error"></p>
+
+                <label for="message">Message *</label>
                 <textarea name="message" class="contact-input" id="message"></textarea>
                 <p class="error-message" id="message-error"></p>
 
@@ -228,40 +232,5 @@
             </div>
         </section>
 
-        <hr class="section-divider">
     </main>
-
-    <footer class="site-footer">
-        <section class="footer-container">
-            <div class="footer-logo">
-                <a href="#intro">
-                    <img src="/static/images/logo.svg" alt="Page 1 Studios Logo">
-                </a>
-            </div>
-
-            <hr class="section-divider" id="footer-divider">
-
-            <nav>
-                <ul class="footer-nav-links">
-                    <li><a href="/privacy-policy">PRIVACY POLICY</a></li>
-                    <li class="footer-nav-separator">•</li>
-                    <li><a href="/terms-of-service">TERMS OF SERVICE</a></li>
-                </ul>
-            </nav>
-
-            <hr class="section-divider" id="footer-divider">
-
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/tom-page-/" target="_blank">
-                    <img src="/static/images/linkedin.svg" alt="Link to Tom Page LinkedIn" class="footer-social-icon">
-                </a>
-                <a href="https://www.instagram.com/page.1.studios/" target="_blank">
-                    <img src="/static/images/instagram.svg" alt="Link to Page 1 Studios Instagram" class="footer-social-icon">
-                </a>
-                <a href="https://github.com/TomPage4" target="_blank">
-                    <img src="/static/images/github.svg" alt="Link to Tom Page GitHub" class="footer-social-icon">
-                </a>
-            </div>
-        </section>
-    </footer>
 {% endblock %}

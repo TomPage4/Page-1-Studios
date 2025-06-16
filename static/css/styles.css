@@ -22,8 +22,8 @@ html, body {
 }
 
 /* Only apply preload-active to main page */
-html.preload-active:not(.legal-page-active),
-body.preload-active:not(.legal-page-active) {
+html.preload-active:not(.legal-page-active):not(.job-page-active),
+body.preload-active:not(.legal-page-active):not(.job-page-active) {
     overflow: hidden;
     height: 100%;
     position: fixed;
@@ -191,7 +191,13 @@ body.preload-active:not(.legal-page-active) {
 .header-burger {
     display: none;
 }
-/* Hide nav and show burger on small screens */
+
+@media (max-width: 1200px) {
+    .nav-links {
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 1000px) {
     .site-header {
         padding: 0.75rem 0.5rem;
@@ -315,6 +321,19 @@ body.preload-active:not(.legal-page-active) {
 
     .nav-links.active li:nth-child(4) {
         transition-delay: 0.4s;
+    }
+
+    .nav-links.active li:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .logo::before,
+    .logo::after,
+    .nav-links a::after,
+    .nav-links a::before {
+        display: none;
     }
 }
 
@@ -835,12 +854,110 @@ body.preload-active:not(.legal-page-active) {
     transform: translateY(-6%);
 }
 
+/*----------------------------------------------
+  STRATEGY
+----------------------------------------------*/
+.strategy {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 7rem 0;
+}
 
+.strategy-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0 6%;
+    gap: 6rem;
+    align-items: center;
+}
 
+.strategy-content {
+    flex: 1;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 
+.strategy-content.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
 
+#strategy-header {
+    display: inline-block;
+}
 
+.strategy-text {
+    padding-top: 2rem;
+    font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+    line-height: 1.6;
+    color: #a5a5a5;
+}
 
+.strategy-text strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.strategy-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.strategy-image-container.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.strategy-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 2px solid #ff2692;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.strategy-image:hover {
+    transform: scale(1.005);
+    box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.5);
+}
+
+@media (max-width: 1000px) {
+    .strategy-container {
+        flex-direction: column;
+        padding: 0 8%;
+        gap: 3rem;
+    }
+
+    .strategy-content {
+        text-align: center;
+    }
+
+    .strategy-text {
+        font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+    }
+
+    .strategy-image-container {
+        width: 100%;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .strategy-image:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
 
 /*----------------------------------------------
   SOLUTIONS
@@ -925,7 +1042,7 @@ body.preload-active:not(.legal-page-active) {
 
 .solution-card p,
 .solution-card li {
-    color: #92918c;
+    color: #a5a5a5;
 }
 
 .solution-card p {
@@ -964,7 +1081,7 @@ body.preload-active:not(.legal-page-active) {
 }
 
 .price-disclaimer-text {
-    color: #92918c;
+    color: #a5a5a5;
 }
 
 .solution-card-footer {
@@ -1454,7 +1571,7 @@ body.preload-active:not(.legal-page-active) {
     font-size: clamp(0.9rem, 1.2vw, 1.1rem);
     line-height: 1.6;
     margin-bottom: 1rem;
-    color: #92918c;
+    color: #a5a5a5;
 }
 
 .legal-page a {
@@ -1487,6 +1604,226 @@ body.preload-active:not(.legal-page-active) {
 
 /* Add styles for legal page body */
 body.legal-page-active {
+    height: auto;
+    overflow-y: auto;
+    position: relative;
+}
+
+/*----------------------------------------------
+  JOB PAGE
+----------------------------------------------*/
+.job-page {
+    padding-top: 10rem;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.job-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.job-header {
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.job-header-left {
+    flex: 1;
+}
+
+.job-header-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.job-title {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 1.5rem;
+}
+
+.job-title a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.job-title a:hover {
+    color: #ff2692;
+}
+
+.job-description {
+    font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+    line-height: 1.6;
+    color: #a5a5a5;
+}
+
+.job-meta h2 {
+    font-size: clamp(1.2rem, 1.4vw, 1.6rem);
+    color: #ff2692;
+    margin-bottom: 0.5rem;
+}
+
+.job-meta p {
+    font-size: clamp(1rem, 1.2vw, 1.3rem);
+    color: #a5a5a5;
+}
+
+.job-meta a {
+    color: #a5a5a5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.job-meta a:hover {
+    color: #ff2692;
+}
+
+.job-image {
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.job-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    border: 2px solid #ff2692;
+}
+
+.job-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.stat-box {
+    flex: 1;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    border-radius: 1rem;
+    border: 2px solid #ff2692;
+    text-align: center;
+}
+
+.stat-box h2 {
+    font-size: clamp(1.2rem, 1.4vw, 1.6rem);
+    color: #ff2692;
+    margin-bottom: 1rem;
+}
+
+.stat-box p {
+    font-size: clamp(1.8rem, 2.2vw, 2.6rem);
+    color: #ffffff;
+}
+
+.job-content {
+    padding: 4rem 0;
+}
+
+.content-section {
+    margin-bottom: 3rem;
+}
+
+.content-section:last-child {
+    margin-bottom: 0;
+}
+
+.content-section h2 {
+    font-size: clamp(1.4rem, 1.6vw, 1.8rem);
+    color: #ff2692;
+    margin-bottom: 1.5rem;
+}
+
+.content-section p {
+    font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+    line-height: 1.6;
+    color: #a5a5a5;
+}
+
+.job-back-button {
+    margin-bottom: 3rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 2px solid #ff2692;
+}
+
+.back-button:hover {
+    color: #ff2692;
+    transform: translateX(-5px);
+}
+
+.back-arrow {
+    font-size: 1.4em;
+    line-height: 1;
+}
+
+.back-text {
+    font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+    .job-page {
+        padding-top: 7rem;
+    }
+
+    .job-header {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .job-image {
+        margin-bottom: 2rem;
+    }
+
+    .job-stats {
+        flex-direction: column;
+    }
+
+    .job-container {
+        padding: 0 1.5rem;
+    }
+
+    .job-back-button {
+        margin-bottom: 2rem;
+    }
+
+    .back-button {
+        font-size: 1.1rem;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .back-button:hover {
+        color: #ffffff;
+        transform: none;
+    }
+
+    .job-title a:hover {
+        color: #ffffff;
+    }
+
+    .job-meta a:hover {
+        color: #a5a5a5;
+    }
+}
+
+/* Add styles for job page body */
+body.job-page-active {
     height: auto;
     overflow-y: auto;
     position: relative;

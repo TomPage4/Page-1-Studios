@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% endif %}">
+<html lang="en" class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% elif request.endpoint == 'job' %}job-page-active{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,8 +87,70 @@
 
     <title>{% block title %}{{ page_title or 'Page 1 Studios | Web Design & Development' }}{% endblock %}</title>
 </head>
-<body class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% endif %}">
+<body class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% elif request.endpoint == 'job' %}job-page-active{% endif %}">
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="/#intro" aria-label="Scroll to intro section">
+                    <img src="/static/images/logo.svg" alt="Page 1 Studios logo" />
+                </a>
+            </div>
+            <div class="header-burger" id="header-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/#work" aria-label="Scroll to work section">WORK</a></li>
+                    <li><a href="/#strategy" aria-label="Scroll to strategy section">STRATEGY</a></li>
+                    <li><a href="/#solutions" aria-label="Scroll to solutions section">SOLUTIONS</a></li>
+                    <li><a href="/#contact" aria-label="Scroll to contact section">CONTACT</a></li>
+                    <li><a href="/#source-code" aria-label="Scroll to source code section">CODE</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
     {% block content %}{% endblock %}
+
+    <hr class="section-divider">
+
+    <footer class="site-footer">
+        <section class="footer-container">
+            <div class="footer-logo">
+                <a href="#intro">
+                    <img src="/static/images/logo.svg" alt="Page 1 Studios Logo">
+                </a>
+            </div>
+
+            <hr class="section-divider" id="footer-divider">
+
+            <nav>
+                <ul class="footer-nav-links">
+                    <li><a href="/privacy-policy" target="_blank">PRIVACY POLICY</a></li>
+                    <li class="footer-nav-separator">•</li>
+                    <li><a href="/terms-of-service" target="_blank">TERMS OF SERVICE</a></li>
+                </ul>
+            </nav>
+
+            <hr class="section-divider" id="footer-divider">
+
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/tom-page-/" target="_blank">
+                    <img src="/static/images/linkedin.svg" alt="Link to Tom Page LinkedIn" class="footer-social-icon">
+                </a>
+                <a href="https://www.instagram.com/page.1.studios/" target="_blank">
+                    <img src="/static/images/instagram.svg" alt="Link to Page 1 Studios Instagram" class="footer-social-icon">
+                </a>
+                <a href="https://github.com/TomPage4" target="_blank">
+                    <img src="/static/images/github.svg" alt="Link to Tom Page GitHub" class="footer-social-icon">
+                </a>
+            </div>
+        </section>
+    </footer>
     <script src="/static/js/script.js"></script>
 </body>
 </html> 
