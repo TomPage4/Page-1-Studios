@@ -447,6 +447,14 @@ document.addEventListener("DOMContentLoaded", () => {
                          entry.target.classList.contains('strategy-image-container')) {
                     entry.target.classList.add('animate-in');
                 }
+                // For individual strategy sections
+                else if (entry.target.classList.contains('strategy-section')) {
+                    const sections = document.querySelectorAll('.strategy-section');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, index * 200); // 200ms delay between each section
+                }
             }
         });
     }, {
@@ -485,6 +493,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const strategyImage = document.querySelector('.strategy-image-container');
     if (strategyContent) observer.observe(strategyContent);
     if (strategyImage) observer.observe(strategyImage);
+
+    // Observe individual strategy sections
+    document.querySelectorAll('.strategy-section').forEach(section => {
+        observer.observe(section);
+    });
 
     // Observe contact section elements with the contact-specific observer
     const contactHeader = document.querySelector('.contact-header-container');

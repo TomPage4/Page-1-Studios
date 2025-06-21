@@ -892,15 +892,41 @@ body.preload-active:not(.legal-page-active):not(.job-page-active) {
     display: inline-block;
 }
 
-.strategy-text {
+.strategy-sections {
     padding-top: 2rem;
-    font-size: clamp(1.1rem, 1.3vw, 1.4rem);
-    line-height: 1.6;
-    color: #a5a5a5;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.strategy-text strong {
+.strategy-section {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.strategy-section.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.strategy-heading {
+    font-size: clamp(1.8rem, 2.2vw, 2.4rem);
     color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.strategy-description {
+    font-size: clamp(1rem, 1.2vw, 1.3rem);
+    line-height: 1.5;
+    color: #a5a5a5;
+    font-weight: 400;
+}
+
+.strategy-description strong {
+    color: #ff2692;
     font-weight: 700;
 }
 
@@ -943,8 +969,16 @@ body.preload-active:not(.legal-page-active):not(.job-page-active) {
         text-align: center;
     }
 
-    .strategy-text {
-        font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+    .strategy-sections {
+        gap: 1.5rem;
+    }
+
+    .strategy-heading {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+
+    .strategy-description {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
     }
 
     .strategy-image-container {
