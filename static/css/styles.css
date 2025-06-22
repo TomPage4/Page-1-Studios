@@ -1064,14 +1064,18 @@ body.preload-active:not(.legal-page-active):not(.job-page-active) {
 }
 
 .solution-card h3 {
-    font-size: clamp(1rem, 1.3vw + 0.5rem, 1.6rem);
+    font-size: clamp(1.2rem, 1.3vw + 0.6rem, 1.8rem);
     color: #ff2692;
     margin-bottom: 1.2vh;
 }
 
 .solution-card h4 {
-    font-size: clamp(1.2rem, 1.6vw + 0.6rem, 2rem);
+    font-size: clamp(0.8rem, 1.1vw + 0.3rem, 1.2rem);
     margin-bottom: 1.2vh;
+}
+
+.solution-card h4 strong {
+    color: #ff2692;
 }
 
 .solution-card p,
@@ -1100,25 +1104,16 @@ body.preload-active:not(.legal-page-active):not(.job-page-active) {
     left: 2rem;
     right: 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-end;
     gap: 1rem;
     pointer-events: none;
 }
 
-.solution-card-footer,
-.price-disclaimer-text {
+.solution-card-footer {
     position: static;
     margin: 0;
-    font-size: clamp(0.7rem, 1vw + 0.2rem, 1rem);
     pointer-events: none;
-}
-
-.price-disclaimer-text {
-    color: #a5a5a5;
-}
-
-.solution-card-footer {
     display: flex;
     align-items: center;
     font-size: clamp(0.8rem, 1vw + 0.2rem, 1rem);
