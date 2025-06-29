@@ -16,20 +16,20 @@
         "solution": "We delivered a streamlined, visually striking website that puts Minusu's work front and center. The design is minimalist by intent, allowing their portfolio to shine without distraction. The site is built for performance, fast load times, seamless transitions, and responsive layouts across devices. We implemented a custom content management system (CMS) tailored for creative workflows, enabling Minusu to easily manage and update their portfolio. A secure contact form improves client communication, while integrated analytics provide actionable data on user engagement. Since launching the site, our collaboration has evolved into a full-service partnership, offering clients a complete online presence package that blends standout web design with brand identity, social media strategy, and more."
     },
     {
-        "id": "coming-soon-1",
-        "title": "COMING SOON",
-        "description": "STAY TUNED",
-        "image": "/static/images/coming-soon.png",
-        "mockup": "/static/images/coming-soon.png",
-        "link": "#",
-        "completion_date": "Coming Soon",
-        "website_url": "#",
+        "id": "koala-fit",
+        "title": "Koala Fit",
+        "description": "Demo fitness site for personal trainers to showcase online services.",
+        "image": "/static/images/koala-fit.png",
+        "mockup": "/static/images/koala-fit.png",
+        "link": "https://koala-fit.onrender.com/",
+        "completion_date": "June 2025",
+        "website_url": "https://koala-fit.onrender.com/",
         "stats": {
-            "traffic_increase": "TBA",
-            "clients_onboarded": "TBA"
+            "traffic_increase": "N/A",
+            "clients_onboarded": "N/A"
         },
-        "initial_challenge": "Coming soon...",
-        "solution": "Coming soon..."
+        "initial_challenge": "Create a professional, high-converting website to demonstrate what a personal trainer's site could look like. The goal was to show potential clients my ability to design a clean, user-friendly site tailored to fitness professionals.",
+        "solution": "I built Koala Fit as a fictional personal training brand to serve as a demo. The site includes key features like service overviews, a contact form, and a booking system, all designed to convert visitors into clients. It showcases my skills in responsive design, custom development, and fitness-focused branding."
     },
     {
         "id": "coming-soon-2",
