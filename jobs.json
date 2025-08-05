@@ -1,13 +1,29 @@
 [
     {
+        "id": "train-with-reece",
+        "title": "Train With Reece",
+        "description": "Demo fitness site for personal trainers to showcase online services.",
+        "image": "/static/images/twr.png",
+        "mockup": "/static/images/twr-mockup.png",
+        "link": "https://www.twrpt.co.uk",
+        "completion_date": "August 2025",
+        "website_url": "https://www.twrpt.co.uk",
+        "stats": {
+            "traffic_increase": "N/A",
+            "clients_onboarded": "Actively growing client base"
+        },
+        "initial_challenge": "Train With Reece (TWR) began with a focus on attracting local personal training clients, but during the project, Reece transitioned fully into online coaching. This shift required a complete rethink of his digital strategy — moving away from local SEO efforts like “personal trainer in Chelmsford” and toward building a strong, professional online brand that could resonate with a remote audience. The challenge was to create a website that not only reflected Reece's energy and expertise but also served as a conversion tool, capable of turning cold visitors into high-intent leads.",
+        "solution": "We designed and developed a modern, conversion-focused website built to support Reece's new direction as an online coach. The site communicates his brand clearly and confidently, with focused messaging, intuitive navigation, and a strong visual identity. Key features include mobile-optimized layouts, a frictionless Calendly booking flow, embedded testimonials, and direct calls to action throughout. With performance, clarity, and trust at the core of the design, the site now acts as a powerful digital HQ, helping Reece connect with clients, build authority, and grow his coaching business online."
+    },
+    {
         "id": "minusu",
         "title": "MINUSU",
         "description": "A creative studio specializing in brand identity, and product design.",
         "image": "/static/images/minusu.jpeg",	
         "mockup": "/static/images/minusu-mockup.png",
-        "link": "https://www.minusu.studio",
+        "link": "https://minusu.onrender.com",
         "completion_date": "May 2025",
-        "website_url": "https://www.minusu.studio",
+        "website_url": "https://minusu.onrender.com",
         "stats": {
             "traffic_increase": "261.4%+",
             "clients_onboarded": "8+"
@@ -21,9 +37,9 @@
         "description": "Demo fitness site for personal trainers to showcase online services.",
         "image": "/static/images/koala-fit.png",
         "mockup": "/static/images/koala-fit.png",
-        "link": "https://koala-fit.onrender.com/",
+        "link": "https://koala-fit.onrender.com",
         "completion_date": "June 2025",
-        "website_url": "https://koala-fit.onrender.com/",
+        "website_url": "https://koala-fit.onrender.com",
         "stats": {
             "traffic_increase": "N/A",
             "clients_onboarded": "N/A"
