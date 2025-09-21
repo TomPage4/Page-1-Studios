@@ -74,8 +74,8 @@ def terms_of_service():
 @app.route('/blog')
 def blog_list():
     # Set page metadata
-    page_title = "Page 1 Studios | Blog - Fitness Web Design & Marketing Tips"
-    page_description = "Expert insights on fitness website design, SEO, and conversion optimization. Learn how to grow your fitness business online with actionable tips from Page 1 Studios."
+    page_title = "Page 1 Studios | Blog - Web Projects, Coursework & Learning Insights"
+    page_description = "Explore the Page 1 Studios blog featuring client website projects, coursework write-ups, and personal learning experiences in web development, cybersecurity, and design."
     page_url = url_for('blog_list', _external=True)
     
     # Add structured data for the blog list
