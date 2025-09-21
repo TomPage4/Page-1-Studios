@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <section class="blog-list-page">
+        <div class="blog-list-container">
+            <!-- Back Button -->
+            <div class="blog-back-button">
+                <a href="{{ url_for('home') }}" class="back-button">
+                    <span class="back-arrow">←</span>
+                    <span class="back-text">Back</span>
+                </a>
+            </div>
+
+            <!-- Header Section -->
+            <section class="blog-list-header">
+                <div class="blog-list-header-left">
+                    <h1 class="blog-list-title">Projects & Progress</h1>
+                    <p class="blog-list-subtitle">Exploring projects, coursework, and new skills. A space where I share progress and insights.</p>
+                </div>
+                <div class="blog-list-header-right">
+                    <div class="blog-stats">
+                        <h2>Total Articles</h2>
+                        <p>{{ blogs|length }}</p>
+                    </div>
+                    <div class="blog-stats">
+                        <h2>Latest Post</h2>
+                        <p>{{ blogs[1].date_published}}</p>
+                        <!-- <p>{{ blogs[0].date_published if blogs else 'N/A' }}</p> -->
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Blog Grid -->
+            <section class="blog-articles">
+                <div class="content-section">
+                    <h2>Recent Articles</h2>
+                    <div class="blog-grid">
+                        {% for blog in blogs %}
+                        <article class="blog-card">
+                            <a href="{{ url_for('blog_detail', blog_id=blog.id) }}" class="blog-card-link-wrapper">
+                                <div class="blog-card-image">
+                                    <img src="{{ blog.featured_image }}" alt="{{ blog.title }}" loading="lazy">
+                                </div>
+                                <div class="blog-card-content">
+                                    <div class="blog-card-meta">
+                                        <span class="blog-date">{{ blog.date_published }}</span>
+                                        <span class="blog-read-time">{{ blog.read_time }}</span>
+                                    </div>
+                                    <h3 class="blog-card-title">{{ blog.title }}</h3>
+                                    <div class="blog-card-tags">
+                                        {% for tag in blog.tags %}
+                                        <span class="blog-tag">{{ tag }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <span class="blog-card-link">Read More →</span>
+                                </div>
+                            </a>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</main>
+{% endblock %}

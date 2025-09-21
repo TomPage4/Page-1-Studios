@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% elif request.endpoint == 'job' %}job-page-active{% endif %}">
+<html lang="en" class="{% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% elif request.endpoint == 'job' %}job-page-active{% elif request.endpoint in ['blog_list', 'blog_detail'] %}blog-page-active{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,12 +80,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-    <!-- Preload -->
-    <link rel="preload" as="image" href="/static/images/logo.svg" type="image/svg+xml">
 
     <title>{% block title %}{{ page_title or 'Page 1 Studios | Web Design & Development' }}{% endblock %}</title>
 </head>
-<body class="preload-active {% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% elif request.endpoint == 'job' %}job-page-active{% endif %}">
+<body class="{% if request.endpoint in ['privacy_policy', 'terms_of_service'] %}legal-page-active{% elif request.endpoint == 'job' %}job-page-active{% elif request.endpoint in ['blog_list', 'blog_detail'] %}blog-page-active{% endif %}">
     <header class="site-header">
         <div class="header-container">
             <div class="logo">
@@ -104,7 +102,7 @@
                     <li><a href="/#strategy" aria-label="Scroll to strategy section">STRATEGY</a></li>
                     <li><a href="/#solutions" aria-label="Scroll to solutions section">SOLUTIONS</a></li>
                     <li><a href="/#contact" aria-label="Scroll to contact section">CONTACT</a></li>
-                    <li><a href="/#source-code" aria-label="Scroll to source code section">CODE</a></li>
+                    <li><a href="/blog" aria-label="Open blog page">BLOG</a></li>
                 </ul>
             </nav>
         </div>

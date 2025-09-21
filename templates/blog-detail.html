@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <section class="blog-page">
+        <div class="blog-container">
+            <!-- Back Button -->
+            <div class="blog-back-button">
+                <a href="{{ url_for('blog_list') }}" class="back-button">
+                    <span class="back-arrow">←</span>
+                    <span class="back-text">Back</span>
+                </a>
+            </div>
+
+            <!-- Top Section -->
+            <section class="blog-header">
+                <div class="blog-header-left">
+                    <h1 class="blog-title">{{ blog.title }}</h1>
+                </div>
+                <div class="blog-header-right">
+                    <div class="blog-meta">
+                        <h2>Date</h2>
+                        <p>{{ blog.date_published }}</p>
+                    </div>
+                    <div class="blog-meta">
+                        <h2>Read Time</h2>
+                        <p>{{ blog.read_time }}</p>
+                    </div>
+                    <div class="blog-meta">
+                        <h2>Author</h2>
+                        <p>{{ blog.author }}</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image and Tags Side by Side -->
+            <section class="blog-image-tags-container">
+                <div class="blog-image">
+                    <img src="{{ blog.featured_image }}" alt="{{ blog.title }}">
+                </div>
+                <div class="blog-tags">
+                    <div class="tag-box">
+                        <h2>Tags</h2>
+                        <div class="tags-list">
+                            {% for tag in blog.tags %}
+                            <span class="blog-tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Content Section -->
+            <section class="blog-content">
+                <div class="content-section">
+                    <h2>Article Content</h2>
+                    <div class="blog-article-content">
+                        {{ blog.content | safe }}
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </section>
+</main>
+{% endblock %}

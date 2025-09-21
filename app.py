@@ -14,8 +14,12 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load job data
-with open('jobs.json') as f:
+with open('jobs.json', 'r', encoding='utf-8') as f:
     jobs = json.load(f)
+
+# Load blog data
+with open('blogs.json', 'r', encoding='utf-8') as f:
+    blogs = json.load(f)
 
 @app.route('/')
 def home():
@@ -66,6 +70,98 @@ def privacy_policy():
 @app.route('/terms-of-service')
 def terms_of_service():
     return render_template('terms-of-service.html')
+
+@app.route('/blog')
+def blog_list():
+    # Set page metadata
+    page_title = "Page 1 Studios | Blog - Fitness Web Design & Marketing Tips"
+    page_description = "Expert insights on fitness website design, SEO, and conversion optimization. Learn how to grow your fitness business online with actionable tips from Page 1 Studios."
+    page_url = url_for('blog_list', _external=True)
+    
+    # Add structured data for the blog list
+    structured_data = {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "@id": f"{page_url}#blog",
+        "url": page_url,
+        "name": "Page 1 Studios Blog",
+        "description": page_description,
+        "publisher": {
+            "@type": "Organization",
+            "name": "Page 1 Studios",
+            "url": "https://www.page1studios.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.page1studios.com/static/images/logo.svg"
+            }
+        },
+        "blogPost": [
+            {
+                "@type": "BlogPosting",
+                "headline": blog["title"],
+                "url": url_for('blog_detail', blog_id=blog["id"], _external=True),
+                "datePublished": blog["date_published"],
+                "author": {
+                    "@type": "Person",
+                    "name": blog["author"]
+                },
+            } for blog in blogs
+        ]
+    }
+    
+    return render_template('blog-list.html', 
+                         blogs=blogs,
+                         page_title=page_title,
+                         page_description=page_description,
+                         page_url=page_url,
+                         structured_data=structured_data)
+
+@app.route('/blog/<blog_id>')
+def blog_detail(blog_id):
+    # Find the blog with matching id
+    blog = next((b for b in blogs if b['id'] == blog_id), None)
+    if blog is None:
+        return redirect(url_for('blog_list'))
+    
+    # Set page metadata
+    page_title = f"Page 1 Studios | {blog['seo_title']}"
+    page_description = blog['seo_description']
+    page_url = url_for('blog_detail', blog_id=blog_id, _external=True)
+    
+    # Add structured data for the blog post
+    structured_data = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": f"{page_url}#blogpost",
+        "url": page_url,
+        "headline": blog['title'],
+        "description": blog['seo_description'],
+        "datePublished": blog['date_published'],
+        "author": {
+            "@type": "Person",
+            "name": blog['author']
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Page 1 Studios",
+            "url": "https://www.page1studios.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.page1studios.com/static/images/logo.svg"
+            }
+        },
+        "image": {
+            "@type": "ImageObject",
+            "url": f"https://www.page1studios.com{blog['featured_image']}"
+        }
+    }
+    
+    return render_template('blog-detail.html', 
+                         blog=blog,
+                         page_title=page_title,
+                         page_description=page_description,
+                         page_url=page_url,
+                         structured_data=structured_data)
 
 @app.route('/sitemap.xml')
 def sitemap():

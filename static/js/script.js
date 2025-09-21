@@ -35,7 +35,7 @@ let isDeleting = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     line1El.classList.add("typewriter-cursor");
-    setTimeout(typeLine1, 3000)
+    setTimeout(typeLine1, 1000)
 });
 
 function typeLine1() {
@@ -281,67 +281,6 @@ drawMatrix();
 
 
 
-/*----------------------------------------------
-  PRELOADER PAGE ANIMATION
-----------------------------------------------*/
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if we're on the home page
-    if (window.location.pathname === '/') {
-        // Check if we came from a job page
-        const fromJobPage = sessionStorage.getItem('fromJobPage');
-        
-        if (!fromJobPage) {
-            // This is a fresh load/refresh of the home page
-            const NUM_BLOCKS = 6;
-            const preloaderContainer = document.getElementById('preloader-blocks-container');
-            const preloaderLogo = document.getElementById('preloader-logo-container');
-
-            for (let i = 0; i < NUM_BLOCKS; i++) {
-                const block = document.createElement('div');
-                block.classList.add('preloader-block-bar');
-                block.style.width = `${100 / NUM_BLOCKS}%`;
-                block.style.left = `${(100 / NUM_BLOCKS) * i}%`;
-                preloaderContainer.appendChild(block);
-            }
-
-            const preloaderBlocks = document.querySelectorAll('.preloader-block-bar');
-
-            setTimeout(() => {
-                preloaderLogo.style.opacity = 0;
-
-                preloaderBlocks.forEach((block, index) => {
-                    setTimeout(() => {
-                        block.classList.add('preloader-block-slide-up');
-                    }, index * 150);
-                });
-
-                const totalAnimationTime = NUM_BLOCKS * 200 + 800;
-                setTimeout(() => {
-                    document.getElementById('preloader').style.display = 'none';
-                    document.documentElement.classList.remove('preload-active');
-                    document.body.classList.remove('preload-active');
-                }, totalAnimationTime - 800);
-            }, 1000);
-        } else {
-            // We came from a job page, remove preloader immediately
-            document.getElementById('preloader').style.display = 'none';
-            document.documentElement.classList.remove('preload-active');
-            document.body.classList.remove('preload-active');
-            // Clear the flag
-            sessionStorage.removeItem('fromJobPage');
-        }
-    }
-});
-
-/*----------------------------------------------
-  HANDLE NAVIGATION BETWEEN PAGES
-----------------------------------------------*/
-document.addEventListener('DOMContentLoaded', () => {
-    // If we're on a job page, set the flag for when user goes back to home
-    if (window.location.pathname !== '/') {
-        sessionStorage.setItem('fromJobPage', 'true');
-    }
-});
 
 
 
