@@ -1,13 +1,13 @@
 [
     {
         "id": "windows-forensics-2",
-        "title": "Coming Soon...",
-        "content": "<p><strong>Coming soon...</strong></p>",
-        "author": "",
-        "date_published": "",
-        "read_time": "",
-        "featured_image": "/static/images/coming-soon.png",
-        "tags": [],
+        "title": "TryHackMe | Windows Forensics 2",
+        "content": "<p><p><strong>After completing the first Windows Forensics room, I moved on to part two. This time, the focus shifted away from the registry and onto the file system. That change made it feel much more hands-on, and it pushed me to think about how evidence is actually stored, deleted, and recovered at a lower level.</strong></p> <h3>FAT vs NTFS - Different File Systems, Different Clues</h3> <p>The first part of this room revisited file systems I had only ever heard about in passing. FAT32, for example, has been around for decades and is still used in devices like SD cards and digital cameras. I knew it had limitations, but I didn't realise that those limitations (like the 4GB max file size) are exactly what make forensic analysts need to understand it. NTFS, by contrast, is far more powerful, and this room showed me how its structure (things like the Master File Table and cluster sizes) becomes essential in an investigation.</p> <h3>The Master File Table - A System's Index</h3> <p>Working with the NTFS $MFT file was eye-opening. As a developer, I've always thought of a file system as a black box that “just stores things.” In reality, $MFT is a detailed index of every file: names, sizes, timestamps, and even traces of files that have been deleted. Parsing it with forensic tools felt a lot like querying a database, and it gave me a much deeper appreciation of how operating systems keep track of everything.</p> <h3>Deleted Doesn't Mean Gone</h3> <p>One of the most striking lessons from this room was how easy it is to recover deleted files. Using Autopsy, I could not only see which files had been deleted, but also restore their contents. Seeing a supposedly deleted text file reappear with its data intact was a powerful reminder that in digital systems, deletion often just means hidden rather than erased. From a security perspective, this changes how I think about data persistence and why secure deletion methods matter.</p> <h3>Tracing Execution</h3> <p>Another big area of learning was how Windows leaves traces of programme execution. Prefetch files, timeline databases, and jump lists all record details about what was run, when, and even how long it stayed in focus. Before this, I wouldn't have guessed Windows kept that much history. As a developer, it's like discovering hidden logs of user activity that persist far longer than most people expect. For an investigator, that's invaluable. For a user, it's a bit unsettling.</p> <h3>Tools of the Trade</h3> <p>This room introduced me to more of Eric Zimmerman's tools, like MFTECmd for parsing file system metadata and PECmd for analysing Prefetch files. They felt a bit intimidating at first, running commands, parsing CSVs, and sifting through output in EZViewer, but once I got into the flow, it started to click.</p> <h3>What Stuck With Me</h3> <ul> <li><strong>File Systems: </strong>File systems hold far more information than I realised, even after deletion.</li> <li><strong>NFTS: </strong>NTFS is incredibly detailed, and forensic tools can pull out insights that would be impossible manually.</li> <li><strong>Windows Data Logging: </strong>Windows records a surprising amount of programme execution history, more than most users probably know.</li> <li><strong>New Tools: </strong>Learning new tools has a learning curve, but once you understand their role, they feel indispensable.</li> </ul> <h3>Final Thoughts</h3> <p>This second Windows Forensics room felt like a natural step up from the first. Instead of just reading about concepts, I was actively parsing files, recovering evidence, and piecing together activity on the system. The biggest shift for me was realising that deleted doesn't mean gone, and that the file system itself is often the strongest witness in an investigation. I'm looking forward to moving on to Linux forensics, where I expect the artefacts will be different but the mindset of digging patiently for traces of past activity will likely stay the same.</p></p>",
+        "author": "Tom Page",
+        "date_published": "24/09/2025",
+        "read_time": "5 min read",
+        "featured_image": "/static/images/windows-forensics-2.png",
+        "tags": ["TryHackMe", "Windows", "Forensics", "FAT", "NTFS", "$MFT", "Autopsy", "EZTools"],
         "seo_title": "TryHackMe - Windows Forensics 2 | Page 1 Studios",
         "seo_description": "Explore the fundamentals of Windows Forensics with TryHackMe. Learn key concepts, tools, and processes to investigate security incidents effectively."
     },
@@ -18,7 +18,7 @@
         "author": "Tom Page",
         "date_published": "19/09/2025",
         "read_time": "5 min read",
-        "featured_image": "/static/images/windows-forensics.jpg",
+        "featured_image": "/static/images/windows-forensics.png",
         "tags": ["TryHackMe", "DFIR", "Windows", "Registry Explorer", "EZTools"],
         "seo_title": "TryHackMe - Windows Forensics 1 | Page 1 Studios",
         "seo_description": "Explore the fundamentals of Windows Forensics with TryHackMe. Learn key concepts, tools, and processes to investigate security incidents effectively."
@@ -30,7 +30,7 @@
         "author": "Tom Page",
         "date_published": "10/09/2025",
         "read_time": "4 min read",
-        "featured_image": "/static/images/dfir-intro.jpg",
+        "featured_image": "/static/images/dfir-intro.png",
         "tags": ["TryHackMe", "DFIR", "Autopsy", "Volatility", "Redline", "Velociraptor", "KAPE"],
         "seo_title": "TryHackMe - DFIR: An Introduction | Page 1 Studios",
         "seo_description": "Explore the fundamentals of Digital Forensics and Incident Response (DFIR) with TryHackMe. Learn key concepts, tools, and processes to investigate security incidents effectively."

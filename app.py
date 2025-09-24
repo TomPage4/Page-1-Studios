@@ -8,6 +8,8 @@ import json
 import re
 import bleach
 from datetime import datetime
+import requests
+import threading
 
 load_dotenv()
 
@@ -21,8 +23,19 @@ with open('jobs.json', 'r', encoding='utf-8') as f:
 with open('blogs.json', 'r', encoding='utf-8') as f:
     blogs = json.load(f)
 
+def ping_site(url):
+    try:
+        requests.get(url)  # short timeout, in case site is slow
+        print(f"Pinged {url}")
+    except Exception as e:
+        print(f"Ping failed: {e}")
+
 @app.route('/')
 def home():
+    url = "https://train-with-reece.onrender.com/"
+    
+    threading.Thread(target=ping_site, args=(url,), daemon=True).start()
+    
     return render_template('index.html', jobs=jobs)
 
 @app.route('/<job_id>')
