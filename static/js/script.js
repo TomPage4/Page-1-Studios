@@ -218,62 +218,61 @@ document.addEventListener("DOMContentLoaded", function () {
 /*----------------------------------------------
   FALLING CODE ON SOURCE CODE
 ----------------------------------------------*/
-const canvas = document.getElementById('falling-code');
-const ctx = canvas.getContext('2d');
-const section = document.querySelector('.source-code');
+document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById('falling-code');
+    const section = document.querySelector('.source-code');
 
-const computedStyles = window.getComputedStyle(section);
-const fontSizePx = computedStyles.fontSize;
-const fontFamily = computedStyles.fontFamily;
-const fontSize = parseFloat(fontSizePx);
+    if (!canvas || !section) return; // exit early if elements missing
 
-const letters = 'アァイィウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+    const ctx = canvas.getContext('2d');
+    const computedStyles = window.getComputedStyle(section);
+    const fontSize = parseFloat(computedStyles.fontSize);
+    const fontFamily = computedStyles.fontFamily;
 
-let columns;
-let drops = [];
-let frame = 0;
-const frameDelay = 5;
+    const letters = 'アァイィウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+    let columns;
+    let drops = [];
+    let frame = 0;
+    const frameDelay = 5;
 
-function resizeCanvasToSection() {
-    const rect = section.getBoundingClientRect();
-
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-
-    columns = Math.floor(canvas.width / fontSize);
-    drops = Array(columns).fill(1);
-}
-
-function drawMatrix() {
-    if (frame % frameDelay === 0) {
-        ctx.fillStyle = 'rgba(12, 12, 12, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#FF2692';
-        ctx.font = `${fontSize}px ${fontFamily}`;
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = letters[Math.floor(Math.random() * letters.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-
-            drops[i]++;
-        }
+    function resizeCanvasToSection() {
+        const rect = section.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        columns = Math.floor(canvas.width / fontSize);
+        drops = Array(columns).fill(1);
     }
 
-    frame++;
-    requestAnimationFrame(drawMatrix);
-}
+    function drawMatrix() {
+        if (frame % frameDelay === 0) {
+            ctx.fillStyle = 'rgba(12, 12, 12, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#FF2692';
+            ctx.font = `${fontSize}px ${fontFamily}`;
 
-// Observe size changes of the container, not window resizes
-const resizeObserver = new ResizeObserver(resizeCanvasToSection);
-resizeObserver.observe(section);
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-// Initial setup
-resizeCanvasToSection();
-drawMatrix();
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+        frame++;
+        requestAnimationFrame(drawMatrix);
+    }
+
+    // Only observe if section exists
+    const resizeObserver = new ResizeObserver(resizeCanvasToSection);
+    resizeObserver.observe(section);
+
+    // Start animation
+    resizeCanvasToSection();
+    drawMatrix();
+});
 
 
 
