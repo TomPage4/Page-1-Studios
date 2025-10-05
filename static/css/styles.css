@@ -453,7 +453,13 @@ html, body {
     .intro-container {
         width: 85%;
         height: 65vh;
-        background-color: rgb(0, 0, 0);
+        background: linear-gradient(
+            to bottom,
+            #000000 73%,
+            #1a0010 77%,
+            #3b0020 81%,
+            #ff2692 100%
+            );
     }
 
     .intro-image-container {
