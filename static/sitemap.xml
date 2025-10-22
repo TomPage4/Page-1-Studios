@@ -18,6 +18,24 @@
     
     <!-- Individual Blog Posts -->
     <url>
+        <loc>https://www.page1studios.com/blog/volatility</loc>
+        <lastmod>2025-10-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.page1studios.com/blog/kape</loc>
+        <lastmod>2025-10-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.page1studios.com/blog/redline</loc>
+        <lastmod>2025-10-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://www.page1studios.com/blog/autopsy</loc>
         <lastmod>2025-10-03</lastmod>
         <changefreq>monthly</changefreq>
