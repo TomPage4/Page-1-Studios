@@ -191,6 +191,7 @@ def redirect_non_www():
 
 # Mail Configuration
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
+DEBUG = os.getenv('FLASK_DEBUG', 'false').lower() == 'true'
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT=587,
@@ -198,7 +199,7 @@ app.config.update(
     MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
     MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
     MAIL_SENDER=os.environ.get('MAIL_SENDER'),
-    MAIL_RECEIVER=os.environ.get('MAIL_RECEIVER')
+    MAIL_RECEIVER=os.environ.get('MAIL_RECEIVER'),
 )
 
 mail = Mail(app)
@@ -296,5 +297,5 @@ def contact():
         return jsonify({"success": False, "error": str(e)}), 500
 
 if __name__ == '__main__':
-    # app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
-    app.run(debug=True)
+    app.run(debug=app.config['DEBUG'])
+    # app.run(debug=False)
